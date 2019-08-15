@@ -1,0 +1,27 @@
+analyzer:
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false
+#  errors:
+#    todo: ignore
+#  exclude:
+#    - flutter/**
+#    - lib/api/*.dart
+
+linter:
+  rules:
+    - avoid_empty_else
+    - cancel_subscriptions
+    - close_sinks
+    - always_declare_return_types
+    - camel_case_types
+    - empty_constructor_bodies
+    - annotate_overrides
+    - avoid_init_to_null
+    - constant_identifier_names
+    - slash_for_doc_comments
+    - sort_constructors_first
+    - void_checks
+    - use_rethrow_when_possible
+    - type_annotate_public_apis
+    - prefer_iterable_whereType
