@@ -34,5 +34,5 @@ class ParserResult {
     @required this.rootNode,
     @required this.respone,
     @required this.executionInfo,
-  }) : assert(rootNode != null);
+  });
 }
