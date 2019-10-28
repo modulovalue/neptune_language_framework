@@ -18,62 +18,62 @@ import '../../neptune_language_framework.dart';
 
 class ReturnTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^return");
+    Matcher matcher() => RegexMatcher(regex: r"^return");
 }
 
-Rule returnn = new LiteralNode(new ReturnTokenLiteral());
+Rule returnn = LiteralNode(ReturnTokenLiteral());
 
 class WhileTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^while");
+    Matcher matcher() => RegexMatcher(regex: r"^while");
 }
 
-Rule whilee = new LiteralNode(new WhileTokenLiteral());
+Rule whilee = LiteralNode(WhileTokenLiteral());
 
 class AndTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^and");
+    Matcher matcher() => RegexMatcher(regex: r"^and");
 }
 
-Rule andWord = new LiteralNode(new AndTokenLiteral());
+Rule andWord = LiteralNode(AndTokenLiteral());
 
 class ThenTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^then");
+    Matcher matcher() => RegexMatcher(regex: r"^then");
 }
 
-Rule thenWord = new LiteralNode(new ThenTokenLiteral());
+Rule thenWord = LiteralNode(ThenTokenLiteral());
 
 
 class NullTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^null");
+    Matcher matcher() => RegexMatcher(regex: r"^null");
 }
 
-Rule nullWord = new LiteralNode(new NullTokenLiteral());
+Rule nullWord = LiteralNode(NullTokenLiteral());
 
 
 class TrueBoolTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^true");
+    Matcher matcher() => RegexMatcher(regex: r"^true");
 }
 
-Rule trueBoolWord = new LiteralNode(new TrueBoolTokenLiteral());
+Rule trueBoolWord = LiteralNode(TrueBoolTokenLiteral());
 
 class FalseBoolTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^false");
+    Matcher matcher() => RegexMatcher(regex: r"^false");
 }
 
-Rule falseBoolWord = new LiteralNode(new FalseBoolTokenLiteral());
+Rule falseBoolWord = LiteralNode(FalseBoolTokenLiteral());
 
 
 class TextTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^[a-zA-Z]+");
+    Matcher matcher() => RegexMatcher(regex: r"^[a-zA-Z]+");
 }
 
-Rule textTokenLiteral = new LiteralNode(new TextTokenLiteral());
+Rule textTokenLiteral = LiteralNode(TextTokenLiteral());
 
 /// Math symbols
 ///
@@ -84,62 +84,62 @@ Rule textTokenLiteral = new LiteralNode(new TextTokenLiteral());
 
 class AddSymTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^[+]");
+    Matcher matcher() => RegexMatcher(regex: r"^[+]");
 }
 
-Rule addSymTokenLiteral = new LiteralNode(new AddSymTokenLiteral());
+Rule addSymTokenLiteral = LiteralNode(AddSymTokenLiteral());
 
 class EqualsTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^[=]");
+    Matcher matcher() => RegexMatcher(regex: r"^[=]");
 }
 
-Rule equals = new LiteralNode(new EqualsTokenLiteral());
+Rule equals = LiteralNode(EqualsTokenLiteral());
 
 class CommaSymTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^[,]");
+    Matcher matcher() => RegexMatcher(regex: r"^[,]");
 }
 
-Rule commaSymTokenLiteral = new LiteralNode(new CommaSymTokenLiteral());
+Rule commaSymTokenLiteral = LiteralNode(CommaSymTokenLiteral());
 
 class MinusSymTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^[-]");
+    Matcher matcher() => RegexMatcher(regex: r"^[-]");
 }
 
-Rule minusSymTokenLiteral = new LiteralNode(new MinusSymTokenLiteral());
+Rule minusSymTokenLiteral = LiteralNode(MinusSymTokenLiteral());
 
 class MulSymTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^[*]");
+    Matcher matcher() => RegexMatcher(regex: r"^[*]");
 }
 
-Rule mulSymTokenLiteral = new LiteralNode(new MulSymTokenLiteral());
+Rule mulSymTokenLiteral = LiteralNode(MulSymTokenLiteral());
 
 
 class DivSymTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^[/]");
+    Matcher matcher() => RegexMatcher(regex: r"^[/]");
 }
 
-Rule divSymTokenLiteral = new LiteralNode(new DivSymTokenLiteral());
+Rule divSymTokenLiteral = LiteralNode(DivSymTokenLiteral());
 
 
 class LessSymTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^[<]");
+    Matcher matcher() => RegexMatcher(regex: r"^[<]");
 }
 
-Rule lessSymTokenLiteral = new LiteralNode(new LessSymTokenLiteral());
+Rule lessSymTokenLiteral = LiteralNode(LessSymTokenLiteral());
 
 
 class BiggerSymTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^[>]");
+    Matcher matcher() => RegexMatcher(regex: r"^[>]");
 }
 
-Rule biggerSymTokenLiteral = new LiteralNode(new BiggerSymTokenLiteral());
+Rule biggerSymTokenLiteral = LiteralNode(BiggerSymTokenLiteral());
 
 /// Number Types
 ///
@@ -149,18 +149,18 @@ Rule biggerSymTokenLiteral = new LiteralNode(new BiggerSymTokenLiteral());
 ///
 class IntTypeTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^int");
+    Matcher matcher() => RegexMatcher(regex: r"^int");
 }
 
-Rule intType = new LiteralNode(new IntTypeTokenLiteral());
+Rule intType = LiteralNode(IntTypeTokenLiteral());
 
 
 class StringTypeTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^String");
+    Matcher matcher() => RegexMatcher(regex: r"^String");
 }
 
-Rule stringType = new LiteralNode(new StringTypeTokenLiteral());
+Rule stringType = LiteralNode(StringTypeTokenLiteral());
 
 
 /// Number literals
@@ -172,27 +172,27 @@ Rule stringType = new LiteralNode(new StringTypeTokenLiteral());
 
 class IntTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^\d+");
+    Matcher matcher() => RegexMatcher(regex: r"^\d+");
 }
 
-Rule intTokenLiteral = new LiteralNode(new IntTokenLiteral());
+Rule intTokenLiteral = LiteralNode(IntTokenLiteral());
 
 class JsonNumberTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?");
+    Matcher matcher() => RegexMatcher(regex: r"^-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?");
 }
 
-Rule jsonNumberTokenLiteral = new LiteralNode(new JsonNumberTokenLiteral());
+Rule jsonNumberTokenLiteral = LiteralNode(JsonNumberTokenLiteral());
 
 class StringWith2QuotesTokenLiteral extends NeptuneTokenLiteral {
 
     static final String regex = '("([^"]*)")|(\'([^\']*)\')';
 
     @override
-    Matcher matcher() => new RegexMatcher(regex: "^$regex");
+    Matcher matcher() => RegexMatcher(regex: "^$regex");
 }
 
-Rule stringW2QTokenLiteral = new LiteralNode(new StringWith2QuotesTokenLiteral());
+Rule stringW2QTokenLiteral = LiteralNode(StringWith2QuotesTokenLiteral());
 
 /// TODO check this literal, unicode support might be missing
 class JSONStringTokenLiteral extends NeptuneTokenLiteral {
@@ -200,27 +200,27 @@ class JSONStringTokenLiteral extends NeptuneTokenLiteral {
     static final String regex = r'"([^\\"]|\\|\\")*"';
 
     @override
-    Matcher matcher() => new RegexMatcher(regex: "^$regex");
+    Matcher matcher() => RegexMatcher(regex: "^$regex");
 }
 
-Rule jsonStringTokenLiteral = new LiteralNode(new JSONStringTokenLiteral());
+Rule jsonStringTokenLiteral = LiteralNode(JSONStringTokenLiteral());
 
 class PositiveNumberTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^[+]?([.]\d+|\d+[.]?\d*)");
+    Matcher matcher() => RegexMatcher(regex: r"^[+]?([.]\d+|\d+[.]?\d*)");
 }
 
-Rule positiveNumberTokenLiteral = new LiteralNode(new PositiveNumberTokenLiteral());
+Rule positiveNumberTokenLiteral = LiteralNode(PositiveNumberTokenLiteral());
 
 
 class SpacesLineTokenLiteral extends NeptuneTokenLiteral {
     static String regex = r"(\f|\n|\r|\t|\v|\r\n| | )";
 
     @override
-    Matcher matcher() => new RegexMatcher(regex: "^$regex");
+    Matcher matcher() => RegexMatcher(regex: "^$regex");
 }
 
-Rule spacesLineTokenLiteral = new LiteralNode(new SpacesLineTokenLiteral());
+Rule spacesLineTokenLiteral = LiteralNode(SpacesLineTokenLiteral());
 
 /// Braces
 ///
@@ -231,48 +231,48 @@ Rule spacesLineTokenLiteral = new LiteralNode(new SpacesLineTokenLiteral());
 
 class LeftParanTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^[(]");
+    Matcher matcher() => RegexMatcher(regex: r"^[(]");
 }
 
-Rule leftParan = new LiteralNode(new LeftParanTokenLiteral());
+Rule leftParan = LiteralNode(LeftParanTokenLiteral());
 
 class RightParanTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^[)]");
+    Matcher matcher() => RegexMatcher(regex: r"^[)]");
 }
 
-Rule rightParan = new LiteralNode(new RightParanTokenLiteral());
+Rule rightParan = LiteralNode(RightParanTokenLiteral());
 
 class LeftCurlyTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^[{]");
+    Matcher matcher() => RegexMatcher(regex: r"^[{]");
 }
 
-Rule leftCurly = new LiteralNode(new LeftCurlyTokenLiteral());
+Rule leftCurly = LiteralNode(LeftCurlyTokenLiteral());
 
 
 class RightCurlyTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^[}]");
+    Matcher matcher() => RegexMatcher(regex: r"^[}]");
 }
 
-Rule rightCurly = new LiteralNode(new RightCurlyTokenLiteral());
+Rule rightCurly = LiteralNode(RightCurlyTokenLiteral());
 
 
 class LeftBracketTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^[[]");
+    Matcher matcher() => RegexMatcher(regex: r"^[[]");
 }
 
-Rule leftBracket = new LiteralNode(new LeftBracketTokenLiteral());
+Rule leftBracket = LiteralNode(LeftBracketTokenLiteral());
 
 
 class RightBracketTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^[\]]");
+    Matcher matcher() => RegexMatcher(regex: r"^[\]]");
 }
 
-Rule rightBracket = new LiteralNode(new RightBracketTokenLiteral());
+Rule rightBracket = LiteralNode(RightBracketTokenLiteral());
 
 /// Other
 ///
@@ -283,18 +283,18 @@ Rule rightBracket = new LiteralNode(new RightBracketTokenLiteral());
 
 class SemicolonTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^[;]");
+    Matcher matcher() => RegexMatcher(regex: r"^[;]");
 }
 
-Rule semicolon = new LiteralNode(new SemicolonTokenLiteral());
+Rule semicolon = LiteralNode(SemicolonTokenLiteral());
 
 
 class ColonTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^[:]");
+    Matcher matcher() => RegexMatcher(regex: r"^[:]");
 }
 
-Rule colon = new LiteralNode(new ColonTokenLiteral());
+Rule colon = LiteralNode(ColonTokenLiteral());
 
 /// Fun
 ///
@@ -305,7 +305,7 @@ Rule colon = new LiteralNode(new ColonTokenLiteral());
 
 class ChickenEmojiTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^☺️");
+    Matcher matcher() => RegexMatcher(regex: r"^☺️");
 }
 
-Rule chickenEmojiLiteral = new LiteralNode(new ChickenEmojiTokenLiteral());
+Rule chickenEmojiLiteral = LiteralNode(ChickenEmojiTokenLiteral());

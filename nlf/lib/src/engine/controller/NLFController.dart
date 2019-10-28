@@ -11,11 +11,11 @@ class NLFController {
     NLFController({@required this.lexer, @required this.parser});
 
     factory NLFController.json() {
-        return new NLFController(lexer: JsonLexer(), parser: JsonParser());
+        return NLFController(lexer: JsonLexer(), parser: JsonParser());
     }
 
     void run(String input, {Function(ParserResult) parserResultCallback, bool printExecutionTime = true}) {
-        LexerResult lexerResult = lexer.lex(input);
+        final lexerResult = lexer.lex(input);
         ParserResult parserResult;
 
         if (lexerResult.respone is LexerResponseSuccessful) {
@@ -46,7 +46,7 @@ class NLFController {
     }
 
     void printInfoToConsole() {
-        new JsonLexer().prettyPrint();
-        new JsonParser().prettyPrint(prettyPrintRoot: true);
+        JsonLexer().prettyPrint();
+        JsonParser().prettyPrint(prettyPrintRoot: true);
     }
 }

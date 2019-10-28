@@ -1,13 +1,13 @@
-import '../../../neptune_language_framework.dart';
+
+import 'package:neptune_language_framework/neptune_language_framework.dart';
 
 abstract class ASTNode {
-
     static bool html = false;
-    LexerMatchResult matchResult;
 
-    NodeType nodeType;
+    final LexerMatchResult matchResult;
+    final NodeType nodeType;
 
-    ASTNode(this.nodeType, this.matchResult);
+    const ASTNode(this.nodeType, this.matchResult);
 
     int consumeCount();
 
@@ -18,15 +18,13 @@ abstract class ASTNode {
 
 class ASTNodeLiteral extends ASTNode {
 
-    ASTNodeLiteral({
+    const ASTNodeLiteral({
         @required NodeType value,
         @required LexerMatchResult matchResult,
     }) : super(value, matchResult);
 
     @override
-    int consumeCount() {
-        return 1;
-    }
+    int consumeCount() => 1;
 
     @override
     String toStringTree(bool pureForTestComparison) {
@@ -43,10 +41,12 @@ class ASTNodeLiteral extends ASTNode {
 
         if (last) {
             prin += "\\ ";
+            // ignore: parameter_assignments
             indent += "  ";
         }
         else {
             prin += "|-";
+            // ignore: parameter_assignments
             indent += "| ";
         }
         if (ASTNode.html) {
@@ -82,19 +82,19 @@ class ASTNodeCommutativeBinary extends ASTNode {
     }
 
     @override
-    int consumeCount() {
-        return nodes.fold<int>(0, (prev, node) => prev += (node?.consumeCount() ?? 0));
-    }
+    int consumeCount() => nodes.fold<int>(0, (prev, node) => prev += node?.consumeCount() ?? 0);
 
     @override
     String prettyPrint(String indent, bool last) {
         var prin = indent;
         if (last) {
             prin += "\\ ";
+            // ignore: parameter_assignments
             indent += "  ";
         }
         else {
             prin += "|-";
+            // ignore: parameter_assignments
             indent += "| ";
         }
 
@@ -105,6 +105,7 @@ class ASTNodeCommutativeBinary extends ASTNode {
         }
 
         for (int i = 0; i < nodes.length; i++) {
+            // ignore: use_string_buffers
             prin += nodes[i].prettyPrint(indent, i == nodes.length - 1);
         }
 

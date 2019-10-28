@@ -78,39 +78,39 @@ class CMinusMinusLexer extends Lexer {
 //
 //            /// Braces
 //            ///
-            new RightCurlyTokenLiteral(),
-            new LeftCurlyTokenLiteral(),
-            new RightParanTokenLiteral(),
-            new LeftParanTokenLiteral(),
+            RightCurlyTokenLiteral(),
+            LeftCurlyTokenLiteral(),
+            RightParanTokenLiteral(),
+            LeftParanTokenLiteral(),
 
             /// Math symbols
             ///
-            new EqualsTokenLiteral(),
-            new LessSymTokenLiteral(),
-            new AddSymTokenLiteral(),
-            new MinusSymTokenLiteral(),
-            new MulSymTokenLiteral(),
+            EqualsTokenLiteral(),
+            LessSymTokenLiteral(),
+            AddSymTokenLiteral(),
+            MinusSymTokenLiteral(),
+            MulSymTokenLiteral(),
 
             /// Separate
             ///
-            new SemicolonTokenLiteral(),
-            new CommaSymTokenLiteral(),
+            SemicolonTokenLiteral(),
+            CommaSymTokenLiteral(),
 
             /// Keywords
             ///
-            new WhileTokenLiteral(),
-            new ReturnTokenLiteral(),
+            WhileTokenLiteral(),
+            ReturnTokenLiteral(),
 
             /// Type Names
             ///
-            new IntTypeTokenLiteral(),
-            new StringTypeTokenLiteral(),
-            new TextTokenLiteral(),
+            IntTypeTokenLiteral(),
+            StringTypeTokenLiteral(),
+            TextTokenLiteral(),
 
             /// Type Literals
             ///
-            new IntTokenLiteral(),
-            new StringWith2QuotesTokenLiteral(),
+            IntTokenLiteral(),
+            StringWith2QuotesTokenLiteral(),
         ];
     }
 
@@ -129,7 +129,7 @@ class CMinusMinusLexer extends Lexer {
 class CMinusMinusParser extends Parser {
     @override
     NodeType root() {
-        return new Programm();
+        return Programm();
     }
 }
 
@@ -153,7 +153,7 @@ class Functionn extends NodeType {
     ;
 }
 
-NodeType function = new Functionn();
+NodeType function = Functionn();
 
 class Declaration extends NodeType {
     @override
@@ -162,7 +162,7 @@ class Declaration extends NodeType {
     ;
 }
 
-NodeType decl = new Declaration();
+NodeType decl = Declaration();
 
 class Statement extends NodeType {
     @override
@@ -176,7 +176,7 @@ class Statement extends NodeType {
     ;
 }
 
-NodeType stm = new Statement();
+NodeType stm = Statement();
 
 
 class Expression extends NodeType {
@@ -187,7 +187,7 @@ class Expression extends NodeType {
         ;
 }
 
-NodeType exp = new Expression();
+NodeType exp = Expression();
 
 
 class Expression1 extends NodeType {
@@ -199,7 +199,7 @@ class Expression1 extends NodeType {
     }
 }
 
-NodeType exp1 = new Expression1();
+NodeType exp1 = Expression1();
 
 class Expression2 extends NodeType {
     @override
@@ -210,7 +210,7 @@ class Expression2 extends NodeType {
         ;
 }
 
-NodeType exp2 = new Expression2();
+NodeType exp2 = Expression2();
 
 class Expression3 extends NodeType {
     @override
@@ -220,7 +220,7 @@ class Expression3 extends NodeType {
         ;
 }
 
-NodeType exp3 = new Expression3();
+NodeType exp3 = Expression3();
 
 class Expression4 extends NodeType {
     @override
@@ -234,7 +234,7 @@ class Expression4 extends NodeType {
         ;
 }
 
-NodeType exp4 = new Expression4();
+NodeType exp4 = Expression4();
 
 
 class Typee extends NodeType {
@@ -247,6 +247,6 @@ class Typee extends NodeType {
     ;
 }
 
-NodeType type = new Typee();
+NodeType type = Typee();
 
 

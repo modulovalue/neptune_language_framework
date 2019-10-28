@@ -18,17 +18,17 @@ class Test2Lexer extends Lexer {
     List<NeptuneTokenLiteral> literals() {
         return [
 
-            new LeftParanTokenLiteral(),
-            new RightParanTokenLiteral(),
+            LeftParanTokenLiteral(),
+            RightParanTokenLiteral(),
 
-            new AddSymTokenLiteral(),
-            new MinusSymTokenLiteral(),
-            new MulSymTokenLiteral(),
-            new DivSymTokenLiteral(),
+            AddSymTokenLiteral(),
+            MinusSymTokenLiteral(),
+            MulSymTokenLiteral(),
+            DivSymTokenLiteral(),
 
-            new IntTokenLiteral(),
-            new TextTokenLiteral(),
-            new ChickenEmojiTokenLiteral(),
+            IntTokenLiteral(),
+            TextTokenLiteral(),
+            ChickenEmojiTokenLiteral(),
 
         ];
     }
@@ -41,7 +41,7 @@ class Test2Lexer extends Lexer {
 class Test2Parser extends Parser {
     @override
     NodeType root() {
-        return new TypeOfActionNode2();
+        return TypeOfActionNode2();
     }
 }
 
@@ -62,7 +62,7 @@ class ExpressionNode extends NodeType {
     ;
 }
 
-NodeType expr = new ExpressionNode();
+NodeType expr = ExpressionNode();
 
 class TermNode extends NodeType {
     @override
@@ -73,7 +73,7 @@ class TermNode extends NodeType {
     ;
 }
 
-NodeType term = new TermNode();
+NodeType term = TermNode();
 
 class FactorNode extends NodeType {
     @override
@@ -86,5 +86,5 @@ class FactorNode extends NodeType {
         ;
 }
 
-NodeType factor = new FactorNode();
+NodeType factor = FactorNode();
 

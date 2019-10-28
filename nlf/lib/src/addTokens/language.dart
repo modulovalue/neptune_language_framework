@@ -6,14 +6,14 @@ class TestLexer extends Lexer {
     @override
     List<NeptuneTokenLiteral> literals() {
         return [
-            new AddTokenLiteral(),
-            new AndTokenLiteral(),
-            new ThenTokenLiteral(),
-            new RemoveTokenLiteral(),
-            new OpenTokenLiteral(),
-            new ChartTokenLiteral(),
-            new PositiveNumberTokenLiteral(),
-            new IDTokenLiteral(),
+            AddTokenLiteral(),
+            AndTokenLiteral(),
+            ThenTokenLiteral(),
+            RemoveTokenLiteral(),
+            OpenTokenLiteral(),
+            ChartTokenLiteral(),
+            PositiveNumberTokenLiteral(),
+            IDTokenLiteral(),
         ];
     }
 
@@ -26,7 +26,7 @@ class TestLexer extends Lexer {
 class TestParser extends Parser {
     @override
     NodeType root() {
-        return new TypeOfActionNode();
+        return TypeOfActionNode();
     }
 }
 
@@ -35,42 +35,42 @@ class TestParser extends Parser {
 /// Literals -----------------------------------
 class AddTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^add");
+    Matcher matcher() => RegexMatcher(regex: r"^add");
 }
 
-Rule addd = new LiteralNode(new AddTokenLiteral());
+Rule addd = LiteralNode(AddTokenLiteral());
 
 
 class RemoveTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^((R|r)(emove)|no)");
+    Matcher matcher() => RegexMatcher(regex: r"^((R|r)(emove)|no)");
 }
 
-Rule removeTokenLiteral = new LiteralNode(new RemoveTokenLiteral());
+Rule removeTokenLiteral = LiteralNode(RemoveTokenLiteral());
 
 
 class IDTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^[a-zA-Z\d]+");
+    Matcher matcher() => RegexMatcher(regex: r"^[a-zA-Z\d]+");
 }
 
-Rule idTokenLiteral = new LiteralNode(new IDTokenLiteral());
+Rule idTokenLiteral = LiteralNode(IDTokenLiteral());
 
 
 class OpenTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^(Open|open)");
+    Matcher matcher() => RegexMatcher(regex: r"^(Open|open)");
 }
 
-Rule openTokenLiteral = new LiteralNode(new OpenTokenLiteral());
+Rule openTokenLiteral = LiteralNode(OpenTokenLiteral());
 
 
 class ChartTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^(d|D|h|H|m|M)(C|c)(hart)");
+    Matcher matcher() => RegexMatcher(regex: r"^(d|D|h|H|m|M)(C|c)(hart)");
 }
 
-Rule chartTokenLiteral = new LiteralNode(new ChartTokenLiteral());
+Rule chartTokenLiteral = LiteralNode(ChartTokenLiteral());
 
 
 /// Nodes -----------------
@@ -91,7 +91,7 @@ class HoldingNode extends NodeType {
         idTokenLiteral + positiveNumberTokenLiteral;
 }
 
-NodeType holding = new HoldingNode();
+NodeType holding = HoldingNode();
 
 class ViewCommandNode extends NodeType {
     @override
@@ -100,4 +100,4 @@ class ViewCommandNode extends NodeType {
         chartTokenLiteral + idTokenLiteral;
 }
 
-NodeType viewCommand = new ViewCommandNode();
+NodeType viewCommand = ViewCommandNode();

@@ -1,7 +1,6 @@
+import 'package:neptune_language_framework/neptune_plus_addTokens.dart';
 import 'package:test/test.dart';
 
-import '../lib/neptune_plus_addTokens.dart';
-import '../lib/src/main.dart';
 
 void main() {
     test('-', () {
@@ -43,8 +42,8 @@ void main() {
         mathexprs("( 2 + 2 ) * a * ( b * c )");
     });
     test('CMM', () {
-        new CMinusMinusLexer().prettyPrint();
-        new CMinusMinusParser().prettyPrint();
+         CMinusMinusLexer().prettyPrint();
+         CMinusMinusParser().prettyPrint();
         cminusminus('   int  main ( ) {print("hu i");}');
         cminusminus("int main() { }");
         cminusminus('int mx ( ) {print();}');
@@ -82,8 +81,8 @@ void main() {
     });
 
 
-//    new JsonLexer().prettyPrint();
-//    new JsonParser().prettyPrint();
+//     JsonLexer().prettyPrint();
+//     JsonParser().prettyPrint();
     test('JSON Parse test', () {
         jsonParseTest('{"widget":{"debug":"on"}}', printTree: true);
     });

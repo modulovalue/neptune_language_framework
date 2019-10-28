@@ -1,36 +1,27 @@
-import '../../../neptune_language_framework.dart';
+
+import 'package:meta/meta.dart';
 
 class ParserException implements Exception {
-    String cause;
+  final String cause;
 
-    @override
-    String toString() => '$runtimeType: $cause';
+  const ParserException(this.cause);
+
+  @override
+  String toString() => '$runtimeType: $cause';
 }
 
 class ParserStackEmptyException extends ParserException {
-    @override
-    String cause;
-
-    ParserStackEmptyException({@required this.cause});
+  const ParserStackEmptyException({@required String cause}) : super(cause);
 }
 
 class ParserNoRuleException extends ParserException {
-    @override
-    String cause;
-
-    ParserNoRuleException({@required this.cause});
+  const ParserNoRuleException({@required String cause}) : super(cause);
 }
 
 class ParserNoNodeForTokenException extends ParserException {
-    @override
-    String cause;
-
-    ParserNoNodeForTokenException({@required this.cause});
+  const ParserNoNodeForTokenException({@required String cause}) : super(cause);
 }
 
 class ParserConflictException extends ParserException {
-    @override
-    String cause;
-
-    ParserConflictException({@required this.cause});
+  const ParserConflictException({@required String cause}) : super(cause);
 }

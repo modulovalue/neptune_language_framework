@@ -1,6 +1,5 @@
+import 'package:neptune_language_framework/neptune_language_framework.dart';
 import 'package:test/test.dart';
-
-import '../../lib/neptune_language_framework.dart';
 
 void main() {
     test("1", () {
@@ -16,11 +15,11 @@ void main() {
         }
 
         List<NeptuneTokenLiteral> literals = [
-            new TextTokenLiteral(),
-            new StringWith2QuotesTokenLiteral(),
-            new RightParanTokenLiteral(),
-            new LeftParanTokenLiteral(),
-            new SemicolonTokenLiteral(),
+            TextTokenLiteral(),
+            StringWith2QuotesTokenLiteral(),
+            RightParanTokenLiteral(),
+            LeftParanTokenLiteral(),
+            SemicolonTokenLiteral(),
         ];
 
 //        var a22 = short(r'    ok');
@@ -71,7 +70,7 @@ void main() {
         expect(c55.positionTo, 18, reason: "c15");
 
 
-        var a3 = short('''ok ok
+        final a3 = short('''ok ok
 \tok''');
         expect(a3, [
             "ok", ' ', "ok", '\n', '\t', 'ok',

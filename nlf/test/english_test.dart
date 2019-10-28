@@ -1,10 +1,9 @@
+import 'package:neptune_language_framework/neptune_language_framework.dart';
 import 'package:test/test.dart';
 
-import '../lib/neptune_language_framework.dart';
-
 void main() {
-//    new JsonLexer().prettyPrint();
-//    new JsonParser().prettyPrint();
+//    JsonLexer().prettyPrint();
+//    JsonParser().prettyPrint();
     test('lone', () {
 //        var printTree = false;
         parseTest("hi", true);
@@ -12,7 +11,7 @@ void main() {
 }
 
 void parseTest(String input, bool succeed, {bool printTree = false}) {
-    executePipeline(input, new EnglishLexer(), new EnglishParser(), succeed, printTree: printTree);
+    executePipeline(input, EnglishLexer(), EnglishParser(), succeed, printTree: printTree);
 }
 
 

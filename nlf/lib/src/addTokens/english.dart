@@ -6,7 +6,7 @@ class EnglishLexer extends Lexer {
     @override
     List<NeptuneTokenLiteral> literals() {
         return [
-            new SingleGreetingTokenLiteral()
+            SingleGreetingTokenLiteral()
         ];
     }
 
@@ -19,25 +19,25 @@ class EnglishLexer extends Lexer {
 class EnglishParser extends Parser {
     @override
     NodeType root() {
-        return new EnglishNode();
+        return EnglishNode();
     }
 }
 
 /// Literals -----------------------------------
 class SingleGreetingTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^(hi|hellothere|hello|huhu|heya|hey|hay)");
+    Matcher matcher() => RegexMatcher(regex: r"^(hi|hellothere|hello|huhu|heya|hey|hay)");
 }
 
-LiteralNode singleGreeting = new LiteralNode(new SingleGreetingTokenLiteral());
+LiteralNode singleGreeting = LiteralNode(SingleGreetingTokenLiteral());
 
 
 class PronomeTokenLiteral extends NeptuneTokenLiteral {
     @override
-    Matcher matcher() => new RegexMatcher(regex: r"^(you)");
+    Matcher matcher() => RegexMatcher(regex: r"^(you)");
 }
 
-LiteralNode pronomeGreeting = new LiteralNode(new PronomeTokenLiteral());
+LiteralNode pronomeGreeting = LiteralNode(PronomeTokenLiteral());
 
 
 /// Nodes -----------------
@@ -53,7 +53,7 @@ class EnglishNode extends NodeType {
 //class PronomeNode extends NodeType {
 //    @override
 //    ListOfRules rules() =>
-//        new GreetingNode().wrap();
+//        GreetingNode().wrap();
 //}
 //
 //class GreetingNode extends NodeType {

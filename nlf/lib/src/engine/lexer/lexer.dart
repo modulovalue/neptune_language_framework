@@ -53,13 +53,13 @@ abstract class Lexer extends Object with PrettyPrinterTemplate implements Pretty
     List<NeptuneTokenLiteral> literals();
 
     LexerResult lex(String code) {
-        List<String> split = splitWithDelimiter(code, delimiter(), dontRemoveDelimiterInThisRegex());
+        final List<String> split = splitWithDelimiter(code, delimiter(), dontRemoveDelimiterInThisRegex());
 //        assert (code == split.join(""));
-        Stopwatch stopwatch = new Stopwatch()
+        final Stopwatch stopwatch = Stopwatch()
             ..start();
         var result = collectMatches(split, literals(), delimiter());
         stopwatch.stop();
-        result..executionInfo = new LexerExecutionInfo(durationToExecute: stopwatch.elapsed);
+        result..executionInfo = LexerExecutionInfo(durationToExecute: stopwatch.elapsed);
         return result;
     }
 
@@ -78,10 +78,10 @@ abstract class Lexer extends Object with PrettyPrinterTemplate implements Pretty
 
 
         /// Split off delimiters and ""context sensitive"" strings
-        var a = new RegExp(regex, multiLine: true);
+        var a = RegExp(regex, multiLine: true);
         var b = a.allMatches(string);
         var c = b.map((Match match) {
-            return match.groups(new List.generate(match.groupCount, (i) {
+            return match.groups(List.generate(match.groupCount, (i) {
                 return i;
             })).map((String f) {
                 return f;
@@ -90,9 +90,9 @@ abstract class Lexer extends Object with PrettyPrinterTemplate implements Pretty
 
 
         /// concat delimiters and ""context sens. strings"" back to the end of found tokens
-        List<String> splitRaw = string.split(new RegExp(regex, multiLine: true));
-        List<String> split = new List<String>.from(splitRaw);
-//        List<String> splitToInsert = new List<String>.from(splitRaw, growable: true);
+        List<String> splitRaw = string.split(RegExp(regex, multiLine: true));
+        List<String> split = List<String>.from(splitRaw);
+//        List<String> splitToInsert = List<String>.from(splitRaw, growable: true);
         int insertOffset = 0;
 
         c.asMap().forEach((int i, List<String> str) {
@@ -109,7 +109,7 @@ abstract class Lexer extends Object with PrettyPrinterTemplate implements Pretty
     static LexerResult collectMatches(List<String> split, List<NeptuneTokenLiteral> literals,
         String delimiter) {
         int leftTrimSize = 0;
-        while (new RegExp(delimiter).matchAsPrefix(split.first) != null) {
+        while (RegExp(delimiter).matchAsPrefix(split.first) != null) {
             leftTrimSize += split
                 .removeAt(0)
                 .length;
@@ -127,10 +127,10 @@ abstract class Lexer extends Object with PrettyPrinterTemplate implements Pretty
                 }, delimiter);
         } catch (e, f) {
             print(f);
-            lexerResponse = new LexerResponseUnknownError("Unknown error :(, ${e.toString()} ${f.toString()}");
+            lexerResponse = LexerResponseUnknownError("Unknown error :(, ${e.toString()} ${f.toString()}");
         }
-        return new LexerResult(
-            respone: lexerResponse ?? new LexerResponseSuccessful(),
+        return LexerResult(
+            respone: lexerResponse ?? LexerResponseSuccessful(),
             successfulResult: matches,
         );
     }
@@ -146,7 +146,7 @@ abstract class Lexer extends Object with PrettyPrinterTemplate implements Pretty
                 leftPaddingRemovedPos,
             );
 
-            Match rawTokenDelimiterMatch = new RegExp(delimiter).matchAsPrefix(rawToken);
+            Match rawTokenDelimiterMatch = RegExp(delimiter).matchAsPrefix(rawToken);
             if (rawTokenDelimiterMatch == null) {
                 var finishedRun = getMatchForRawToken(
                     firstRun,
@@ -161,7 +161,7 @@ abstract class Lexer extends Object with PrettyPrinterTemplate implements Pretty
                 }
                 leftPaddingRemovedPos = finishedRun.key.positionTo;
             } else {
-                lastLexerResponse = new LexerResponseSuccessful();
+                lastLexerResponse = LexerResponseSuccessful();
                 leftPaddingRemovedPos += 1;
             }
         }
@@ -198,12 +198,12 @@ abstract class Lexer extends Object with PrettyPrinterTemplate implements Pretty
                     singleRun.match
                         ..positionFrom;
 //                    += addedPadToPrevious;
-                    return new MapEntry(singleRun.match, new LexerResponseSuccessful());
+                    return MapEntry(singleRun.match, LexerResponseSuccessful());
                 } else {
                     if (furtherRun.match.matchedString == null) {
                         if (furtherRun.left != null && furtherRun.left != "") {
-                            new MapEntry(
-                                null, new LexerResponseUnknownToken("'obladi oblada"));
+                            MapEntry(
+                                null, LexerResponseUnknownToken("'obladi oblada"));
                         }
                         throw "Unexpected error 13940";
                     } else {
@@ -213,11 +213,11 @@ abstract class Lexer extends Object with PrettyPrinterTemplate implements Pretty
                     }
                 }
             } else {
-                return new MapEntry(singleRun.match, new LexerResponseSuccessful());
+                return MapEntry(singleRun.match, LexerResponseSuccessful());
             }
         } else {
-            return new MapEntry(
-                singleRun?.match, new LexerResponseUnknownToken("'${""
+            return MapEntry(
+                singleRun?.match, LexerResponseUnknownToken("'${""
 //                lastFoundMatch?.toString()
             }' is not known, "
                 "did you add the Literal to the lexer?"));

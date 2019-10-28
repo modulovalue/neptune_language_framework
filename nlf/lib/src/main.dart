@@ -8,18 +8,18 @@ Future main() async {
     print('C-- Evaluator:');
     print('Enter code and press Enter:');
 
-//    File f = new File("./test/json_test_files/draft6/maxLength.json");
+//    File f = File("./test/json_test_files/draft6/maxLength.json");
 //                  String json = f.readAsStringSync();
 //                  jsonParseTest(json, printTree: false);
-//    await new Directory("./test/json_test_files/draft6").list().forEach((FileSystemEntity action) async {
+//    await Directory("./test/json_test_files/draft6").list().forEach((FileSystemEntity action) async {
 //        if (FileSystemEntity.typeSync(action.path) != FileSystemEntityType.notFound) {
 //            try {
 //                print(action.path);
-//                File f = new File.fromUri(action.uri);
+//                File f = File.fromUri(action.uri);
 //                String json = f.readAsStringSync();
 //                jsonParseTest(json, printTree: false);
 //                print(json);
-//                await new Future.delayed(new Duration(milliseconds: 3000), () {});
+//                await Future.delayed(Duration(milliseconds: 3000), () {});
 //            } catch (e) {
 //
 //            }
@@ -55,23 +55,23 @@ Future main() async {
 }
 
 void neptuneplus(String input, {bool printTree = false}) {
-    executePipeline(input, new TestLexer(), new TestParser());
+    executePipeline(input, TestLexer(), TestParser());
 }
 
 void mathexprs(String input, {bool printTree = false}) {
-    executePipeline(input, new Test2Lexer(), new Test2Parser());
+    executePipeline(input, Test2Lexer(), Test2Parser());
 }
 
 void cminusminus(String input, {bool printTree = false}) {
-    executePipeline(input, new CMinusMinusLexer(), new CMinusMinusParser(), printTree: printTree);
+    executePipeline(input, CMinusMinusLexer(), CMinusMinusParser(), printTree: printTree);
 }
 
 void jsonParseTest(String input, {bool printTree = false}) {
-    executePipeline(input, new JsonLexer(), new JsonParser(), printTree: printTree);
+    executePipeline(input, JsonLexer(), JsonParser(), printTree: printTree);
 }
 
 void englishTest(String input, {bool printTree = false}) {
-    executePipeline(input, new EnglishLexer(), new EnglishParser(), printTree: printTree);
+    executePipeline(input, EnglishLexer(), EnglishParser(), printTree: printTree);
 }
 
 void executePipeline(String input,
@@ -80,7 +80,7 @@ void executePipeline(String input,
         bool printTree = false,
         Function(String) prettyPrintCallback,
     }) {
-    new NLFController(lexer: lexer, parser: parser)
+    NLFController(lexer: lexer, parser: parser)
         ..run(
             input,
             parserResultCallback: (ParserResult result) {

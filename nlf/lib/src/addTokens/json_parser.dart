@@ -13,20 +13,20 @@ class JsonLexer extends Lexer {
     @override
     List<NeptuneTokenLiteral> literals() {
         return [
-            new NullTokenLiteral(),
-            new FalseBoolTokenLiteral(),
-            new TrueBoolTokenLiteral(),
+            NullTokenLiteral(),
+            FalseBoolTokenLiteral(),
+            TrueBoolTokenLiteral(),
 
-            new CommaSymTokenLiteral(),
-            new ColonTokenLiteral(),
+            CommaSymTokenLiteral(),
+            ColonTokenLiteral(),
 
-            new LeftBracketTokenLiteral(),
-            new RightBracketTokenLiteral(),
-            new LeftCurlyTokenLiteral(),
-            new RightCurlyTokenLiteral(),
+            LeftBracketTokenLiteral(),
+            RightBracketTokenLiteral(),
+            LeftCurlyTokenLiteral(),
+            RightCurlyTokenLiteral(),
 
-            new JsonNumberTokenLiteral(),
-            new JSONStringTokenLiteral()
+            JsonNumberTokenLiteral(),
+            JSONStringTokenLiteral()
         ];
     }
 
@@ -45,7 +45,7 @@ class JsonLexer extends Lexer {
 class JsonParser extends Parser {
     @override
     NodeType root() {
-        return new JSONValuee();
+        return JSONValuee();
     }
 }
 
@@ -54,14 +54,14 @@ class JSONObject extends NodeType {
     @override
     ListOfRules rules() =>
         leftCurly + rightCurly
-        | leftCurly + new JSONPair().list(commaSymTokenLiteral) + rightCurly;
+        | leftCurly + JSONPair().list(commaSymTokenLiteral) + rightCurly;
 
 }
 
 class JSONPair extends NodeType {
     @override
     ListOfRules rules() =>
-        (new JSONString() + colon + new JSONValuee()).wrap()
+        (JSONString() + colon + JSONValuee()).wrap()
     ;
 }
 
@@ -70,7 +70,7 @@ class JSONArray extends NodeType {
     @override
     ListOfRules rules() =>
         leftBracket + rightBracket
-        | leftBracket + new JSONValuee().list(commaSymTokenLiteral) + rightBracket
+        | leftBracket + JSONValuee().list(commaSymTokenLiteral) + rightBracket
     ;
 }
 
@@ -80,10 +80,10 @@ class JSONValuee extends NodeType {
         nullWord
         | falseBoolWord
         | trueBoolWord
-        | new JSONArray()
-        | new JSONObject()
-        | new JSONNumber()
-        | new JSONString()
+        | JSONArray()
+        | JSONObject()
+        | JSONNumber()
+        | JSONString()
     ;
 }
 

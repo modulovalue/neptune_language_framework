@@ -1,38 +1,38 @@
-import '../../../neptune_language_framework.dart';
+import 'package:meta/meta.dart';
+import 'package:neptune_language_framework/neptune_language_framework.dart';
 
 abstract class ParserResponse {
-    String shortDescription;
+  final String shortDescription;
 
-    ParserResponse(this.shortDescription);
+  const ParserResponse(this.shortDescription);
 
-    @override
-    String toString() {
-        return "${runtimeType.toString()}: ${shortDescription.toString()}";
-    }
+  @override
+  String toString() =>
+      "${runtimeType.toString()}: ${shortDescription.toString()}";
 }
 
 class ParserResponseSuccessful extends ParserResponse {
-    ParserResponseSuccessful() : super("success");
+  const ParserResponseSuccessful() : super("success");
 }
 
 class ParserResponseUnknownError extends ParserResponse {
-    ParserResponseUnknownError(String description) : super(description);
+  const ParserResponseUnknownError(String description) : super(description);
 }
 
 class ParserExecutionInfo {
-    Duration durationToExecute;
+  final Duration durationToExecute;
 
-    ParserExecutionInfo({@required this.durationToExecute});
+  const ParserExecutionInfo({@required this.durationToExecute});
 }
 
 class ParserResult {
-    ASTNode rootNode;
-    ParserResponse respone;
-    ParserExecutionInfo executionInfo;
+  final ASTNode rootNode;
+  final ParserResponse respone;
+  final ParserExecutionInfo executionInfo;
 
-    ParserResult({
-        @required this.rootNode,
-        @required this.respone,
-        @required this.executionInfo,
-    });
+  const ParserResult({
+    @required this.rootNode,
+    @required this.respone,
+    @required this.executionInfo,
+  }) : assert(rootNode != null);
 }

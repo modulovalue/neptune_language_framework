@@ -1,11 +1,10 @@
+import 'package:neptune_language_framework/neptune_language_framework.dart';
+import 'package:neptune_language_framework/neptune_plus_addTokens.dart';
 import 'package:test/test.dart';
 
-import '../lib/neptune_language_framework.dart';
-import '../lib/neptune_plus_addTokens.dart';
-
 void main() {
-    new JsonLexer().prettyPrint();
-    new JsonParser().prettyPrint();
+     JsonLexer().prettyPrint();
+     JsonParser().prettyPrint();
     test('lone', () {
         jsonParseTest("8239348 {}", false);
         var printTree = false;
@@ -83,7 +82,7 @@ void main() {
 }
 
 void jsonParseTest(String input, bool succeed, {bool printTree = false}) {
-    executePipeline(input, new JsonLexer(), new JsonParser(), succeed, printTree: printTree);
+    executePipeline(input,  JsonLexer(),  JsonParser(), succeed, printTree: printTree);
 }
 
 
