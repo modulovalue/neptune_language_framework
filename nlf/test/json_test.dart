@@ -1,5 +1,5 @@
 import 'package:neptune_language_framework/neptune_language_framework.dart';
-import 'package:neptune_language_framework/neptune_plus_addTokens.dart';
+import 'package:neptune_language_framework/neptune_plus_add_tokens.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -87,7 +87,7 @@ void jsonParseTest(String input, bool succeed, {bool printTree = false}) {
 
 
 void executePipeline(String input, Lexer lexer, Parser parser, bool succeed, {bool printTree = false}) {
-    LexerResult lexerResult = lexer.lex(input);
+    final lexerResult = lexer.lex(input);
     ParserResult parserResult;
 
 //    print("Input: " + input);

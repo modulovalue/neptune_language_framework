@@ -1,5 +1,5 @@
 Duration stopwatch(Function() f) {
-    Stopwatch stopwatch = Stopwatch()
+    final Stopwatch stopwatch = Stopwatch()
         ..start();
     f();
     stopwatch.stop();

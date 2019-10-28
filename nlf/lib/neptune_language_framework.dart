@@ -12,7 +12,6 @@ export 'src/engine/parser/parser_exceptions.dart';
 export 'src/engine/parser/parser_response.dart';
 export 'src/engine/parser/rules.dart';
 export 'src/engine/template_tokens.dart';
-export 'src/inference/NLFInference.dart';
 export 'src/printer/lexer.dart';
 export 'src/printer/node_type.dart';
 export 'src/printer/parser.dart';

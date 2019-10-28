@@ -16,7 +16,7 @@ void parseTest(String input, bool succeed, {bool printTree = false}) {
 
 
 void executePipeline(String input, Lexer lexer, Parser parser, bool succeed, {bool printTree = false}) {
-    LexerResult lexerResult = lexer.lex(input);
+    final lexerResult = lexer.lex(input);
     ParserResult parserResult;
 
 //    print("Input: " + input);
