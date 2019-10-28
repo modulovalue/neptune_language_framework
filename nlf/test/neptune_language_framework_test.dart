@@ -1,6 +1,7 @@
-import 'package:neptune_language_framework/neptune_plus_add_tokens.dart';
+import 'package:neptune_language_framework/neptune_language_framework.dart';
 import 'package:test/test.dart';
 
+import 'main.dart';
 
 void main() {
     test('-', () {

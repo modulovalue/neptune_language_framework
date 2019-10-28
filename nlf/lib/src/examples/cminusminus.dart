@@ -75,9 +75,8 @@ class CMinusMinusLexer extends Lexer {
     @override
     List<NeptuneTokenLiteral> literals() {
         return const [
-//
-//            /// Braces
-//            ///
+            /// Braces
+            ///
             RightCurlyTokenLiteral(),
             LeftCurlyTokenLiteral(),
             RightParanTokenLiteral(),
@@ -136,9 +135,7 @@ class CMinusMinusParser extends Parser {
 /// Nodes -----------------
 class Programm extends NodeType {
     @override
-    ListOfRules rules() =>
-        function.directList().wrap()
-    ;
+    ListOfRules rules() => function.directList().wrap();
 }
 
 class Functionn extends NodeType {
@@ -157,9 +154,7 @@ NodeType function = Functionn();
 
 class Declaration extends NodeType {
     @override
-    ListOfRules rules() =>
-        (type + textTokenLiteral).wrap()
-    ;
+    ListOfRules rules() => (type + textTokenLiteral).wrap();
 }
 
 NodeType decl = Declaration();
