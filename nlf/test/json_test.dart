@@ -7,7 +7,7 @@ void main() {
      JsonParser().prettyPrint();
     test('lone', () {
         jsonParseTest("8239348 {}", false);
-        var printTree = false;
+        const printTree = false;
         jsonParseTest('{"":', false, printTree: printTree);
         jsonParseTest('{}}', false, printTree: printTree);
         jsonParseTest('{', false, printTree: printTree);
@@ -82,7 +82,7 @@ void main() {
 }
 
 void jsonParseTest(String input, bool succeed, {bool printTree = false}) {
-    executePipeline(input,  JsonLexer(),  JsonParser(), succeed, printTree: printTree);
+    executePipeline(input, JsonLexer(), JsonParser(), succeed, printTree: printTree);
 }
 
 

@@ -3,13 +3,13 @@ import 'package:test/test.dart';
 
 void main() {
     test("1", () {
-        String delimiter = SpacesLineTokenLiteral.regex;
+        String delimiter = SpacesLineTokenLiteral.regexx;
         List<String> short(String str) {
             return Lexer.splitWithDelimiter(
                 str,
                 delimiter,
                 [
-                    StringWith2QuotesTokenLiteral.regex
+                    StringWith2QuotesTokenLiteral.regexx
                 ],
             );
         }

@@ -47,7 +47,7 @@ void executePipeline(String input, Lexer lexer, Parser parser, bool succeed, {bo
     String b = "-1";
 
     try {
-        a = parserResult?.rootNode?.toStringTree(true);
+        a = parserResult.rootNode?.toStringTree(true);
         b = lexerResult.successfulResult.map((f) => f.matchedString).join("");
     } catch (e, f) {
         print(e.toString() + " " + f.toString());
@@ -58,11 +58,11 @@ void executePipeline(String input, Lexer lexer, Parser parser, bool succeed, {bo
         }
     }
     if (succeed) {
-        print("a");
+        print("$a $b");
         expect(a, b);
 //        print(parserResult.rootNode.prettyPrint("", true));
     } else {
-        print("b");
+        print("$a $b");
         expect(a, isNot(b));
     }
 
