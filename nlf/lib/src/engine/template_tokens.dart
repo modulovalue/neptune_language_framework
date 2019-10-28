@@ -8,293 +8,219 @@ import '../../neptune_language_framework.dart';
 ///   then don't forget to use the + and not the * to not match zero characters
 ///
 
-
 /// Keywords
-///
-///
-///
-///
-///
 
-class ReturnTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^return");
+class ReturnTokenLiteral extends RegexToken {
+  const ReturnTokenLiteral() : super(r"^return");
 }
 
-Rule returnn = LiteralNode(ReturnTokenLiteral());
+const Rule returnn = LiteralNode(ReturnTokenLiteral());
 
-class WhileTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^while");
+class WhileTokenLiteral extends RegexToken {
+  const WhileTokenLiteral() : super(r"^while");
 }
 
-Rule whilee = LiteralNode(WhileTokenLiteral());
+const Rule whilee = LiteralNode(WhileTokenLiteral());
 
-class AndTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^and");
+class AndTokenLiteral extends RegexToken {
+  const AndTokenLiteral() : super(r"^and");
 }
 
-Rule andWord = LiteralNode(AndTokenLiteral());
+const Rule andWord = LiteralNode(AndTokenLiteral());
 
-class ThenTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^then");
+class ThenTokenLiteral extends RegexToken {
+  const ThenTokenLiteral() : super(r"^then");
 }
 
-Rule thenWord = LiteralNode(ThenTokenLiteral());
+const Rule thenWord = LiteralNode(ThenTokenLiteral());
 
-
-class NullTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^null");
+class NullTokenLiteral extends RegexToken {
+  const NullTokenLiteral() : super(r"^null");
 }
 
-Rule nullWord = LiteralNode(NullTokenLiteral());
+const Rule nullWord = LiteralNode(NullTokenLiteral());
 
-
-class TrueBoolTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^true");
+class TrueBoolTokenLiteral extends RegexToken {
+  const TrueBoolTokenLiteral() : super(r"^true");
 }
 
-Rule trueBoolWord = LiteralNode(TrueBoolTokenLiteral());
+const Rule trueBoolWord = LiteralNode(TrueBoolTokenLiteral());
 
-class FalseBoolTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^false");
+class FalseBoolTokenLiteral extends RegexToken {
+  const FalseBoolTokenLiteral() : super(r"^false");
 }
 
-Rule falseBoolWord = LiteralNode(FalseBoolTokenLiteral());
+const Rule falseBoolWord = LiteralNode(FalseBoolTokenLiteral());
 
-
-class TextTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^[a-zA-Z]+");
+class TextTokenLiteral extends RegexToken {
+  const TextTokenLiteral() : super(r"^[a-zA-Z]+");
 }
 
-Rule textTokenLiteral = LiteralNode(TextTokenLiteral());
+const Rule textTokenLiteral = LiteralNode(TextTokenLiteral());
 
 /// Math symbols
-///
-///
-///
-///
-///
 
-class AddSymTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^[+]");
+class AddSymTokenLiteral extends RegexToken {
+  const AddSymTokenLiteral() : super(r"^[+]");
 }
 
-Rule addSymTokenLiteral = LiteralNode(AddSymTokenLiteral());
+const Rule addSymTokenLiteral = LiteralNode(AddSymTokenLiteral());
 
-class EqualsTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^[=]");
+class EqualsTokenLiteral extends RegexToken {
+  const EqualsTokenLiteral() : super(r"^[=]");
 }
 
-Rule equals = LiteralNode(EqualsTokenLiteral());
+const Rule equals = LiteralNode(EqualsTokenLiteral());
 
-class CommaSymTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^[,]");
+class CommaSymTokenLiteral extends RegexToken {
+  const CommaSymTokenLiteral() : super(r"^[,]");
 }
 
-Rule commaSymTokenLiteral = LiteralNode(CommaSymTokenLiteral());
+const Rule commaSymTokenLiteral = LiteralNode(CommaSymTokenLiteral());
 
-class MinusSymTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^[-]");
+class MinusSymTokenLiteral extends RegexToken {
+  const MinusSymTokenLiteral() : super(r"^[-]");
 }
 
-Rule minusSymTokenLiteral = LiteralNode(MinusSymTokenLiteral());
+const Rule minusSymTokenLiteral = LiteralNode(MinusSymTokenLiteral());
 
-class MulSymTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^[*]");
+class MulSymTokenLiteral extends RegexToken {
+  const MulSymTokenLiteral() : super(r"^[*]");
 }
 
-Rule mulSymTokenLiteral = LiteralNode(MulSymTokenLiteral());
+const Rule mulSymTokenLiteral = LiteralNode(MulSymTokenLiteral());
 
-
-class DivSymTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^[/]");
+class DivSymTokenLiteral extends RegexToken {
+  const DivSymTokenLiteral() : super(r"^[/]");
 }
 
-Rule divSymTokenLiteral = LiteralNode(DivSymTokenLiteral());
+const Rule divSymTokenLiteral = LiteralNode(DivSymTokenLiteral());
 
-
-class LessSymTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^[<]");
+class LessSymTokenLiteral extends RegexToken {
+  const LessSymTokenLiteral() : super(r"^[<]");
 }
 
-Rule lessSymTokenLiteral = LiteralNode(LessSymTokenLiteral());
+const Rule lessSymTokenLiteral = LiteralNode(LessSymTokenLiteral());
 
-
-class BiggerSymTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^[>]");
+class BiggerSymTokenLiteral extends RegexToken {
+  const BiggerSymTokenLiteral() : super(r"^[>]");
 }
 
-Rule biggerSymTokenLiteral = LiteralNode(BiggerSymTokenLiteral());
+const Rule biggerSymTokenLiteral = LiteralNode(BiggerSymTokenLiteral());
 
 /// Number Types
-///
-///
-///
-///
-///
-class IntTypeTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^int");
+
+class IntTypeTokenLiteral extends RegexToken {
+  const IntTypeTokenLiteral() : super(r"^int");
 }
 
-Rule intType = LiteralNode(IntTypeTokenLiteral());
+const Rule intType = LiteralNode(IntTypeTokenLiteral());
 
-
-class StringTypeTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^String");
+class StringTypeTokenLiteral extends RegexToken {
+  const StringTypeTokenLiteral() : super(r"^String");
 }
 
-Rule stringType = LiteralNode(StringTypeTokenLiteral());
-
+const Rule stringType = LiteralNode(StringTypeTokenLiteral());
 
 /// Number literals
-///
-///
-///
-///
-///
 
-class IntTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^\d+");
+class IntTokenLiteral extends RegexToken {
+  const IntTokenLiteral() : super(r"^\d+");
 }
 
-Rule intTokenLiteral = LiteralNode(IntTokenLiteral());
+const Rule intTokenLiteral = LiteralNode(IntTokenLiteral());
 
-class JsonNumberTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?");
+class JsonNumberTokenLiteral extends RegexToken {
+  const JsonNumberTokenLiteral()
+      : super(r"^-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?");
 }
 
-Rule jsonNumberTokenLiteral = LiteralNode(JsonNumberTokenLiteral());
+const Rule jsonNumberTokenLiteral = LiteralNode(JsonNumberTokenLiteral());
 
-class StringWith2QuotesTokenLiteral extends NeptuneTokenLiteral {
+class StringWith2QuotesTokenLiteral extends RegexToken {
+  static const String regexx = '("([^"]*)")|(\'([^\']*)\')';
 
-    static final String regex = '("([^"]*)")|(\'([^\']*)\')';
-
-    @override
-    Matcher matcher() => RegexMatcher(regex: "^$regex");
+  const StringWith2QuotesTokenLiteral() : super("^$regexx");
 }
 
-Rule stringW2QTokenLiteral = LiteralNode(StringWith2QuotesTokenLiteral());
+const Rule stringW2QTokenLiteral = LiteralNode(StringWith2QuotesTokenLiteral());
 
 /// TODO check this literal, unicode support might be missing
-class JSONStringTokenLiteral extends NeptuneTokenLiteral {
-    /// "([^\\"]|\\")*"
-    static final String regex = r'"([^\\"]|\\|\\")*"';
+class JSONStringTokenLiteral extends RegexToken {
+  /// "([^\\"]|\\")*"
+  static const String regexx = r'"([^\\"]|\\|\\")*"';
 
-    @override
-    Matcher matcher() => RegexMatcher(regex: "^$regex");
+  const JSONStringTokenLiteral() : super("^$regexx");
 }
 
-Rule jsonStringTokenLiteral = LiteralNode(JSONStringTokenLiteral());
+const Rule jsonStringTokenLiteral = LiteralNode(JSONStringTokenLiteral());
 
-class PositiveNumberTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^[+]?([.]\d+|\d+[.]?\d*)");
+class PositiveNumberTokenLiteral extends RegexToken {
+  const PositiveNumberTokenLiteral() : super(r"^[+]?([.]\d+|\d+[.]?\d*)");
 }
 
-Rule positiveNumberTokenLiteral = LiteralNode(PositiveNumberTokenLiteral());
+const Rule positiveNumberTokenLiteral =
+    LiteralNode(PositiveNumberTokenLiteral());
 
+class SpacesLineTokenLiteral extends RegexToken {
+  static const String regexx = r"(\f|\n|\r|\t|\v|\r\n| | )";
 
-class SpacesLineTokenLiteral extends NeptuneTokenLiteral {
-    static String regex = r"(\f|\n|\r|\t|\v|\r\n| | )";
-
-    @override
-    Matcher matcher() => RegexMatcher(regex: "^$regex");
+  const SpacesLineTokenLiteral() : super("^$regexx");
 }
 
-Rule spacesLineTokenLiteral = LiteralNode(SpacesLineTokenLiteral());
+const Rule spacesLineTokenLiteral = LiteralNode(SpacesLineTokenLiteral());
 
 /// Braces
-///
-///
-///
-///
-///
 
-class LeftParanTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^[(]");
+class LeftParanTokenLiteral extends RegexToken {
+  const LeftParanTokenLiteral() : super(r"^[(]");
 }
 
-Rule leftParan = LiteralNode(LeftParanTokenLiteral());
+const Rule leftParan = LiteralNode(LeftParanTokenLiteral());
 
-class RightParanTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^[)]");
+class RightParanTokenLiteral extends RegexToken {
+  const RightParanTokenLiteral() : super(r"^[)]");
 }
 
-Rule rightParan = LiteralNode(RightParanTokenLiteral());
+const Rule rightParan = LiteralNode(RightParanTokenLiteral());
 
-class LeftCurlyTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^[{]");
+class LeftCurlyTokenLiteral extends RegexToken {
+  const LeftCurlyTokenLiteral() : super(r"^[{]");
 }
 
-Rule leftCurly = LiteralNode(LeftCurlyTokenLiteral());
+const Rule leftCurly = LiteralNode(LeftCurlyTokenLiteral());
 
-
-class RightCurlyTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^[}]");
+class RightCurlyTokenLiteral extends RegexToken {
+  const RightCurlyTokenLiteral() : super(r"^[}]");
 }
 
-Rule rightCurly = LiteralNode(RightCurlyTokenLiteral());
+const Rule rightCurly = LiteralNode(RightCurlyTokenLiteral());
 
-
-class LeftBracketTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^[[]");
+class LeftBracketTokenLiteral extends RegexToken {
+  const LeftBracketTokenLiteral() : super(r"^[[]");
 }
 
-Rule leftBracket = LiteralNode(LeftBracketTokenLiteral());
+const Rule leftBracket = LiteralNode(LeftBracketTokenLiteral());
 
-
-class RightBracketTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^[\]]");
+class RightBracketTokenLiteral extends RegexToken {
+  const RightBracketTokenLiteral() : super(r"^[\]]");
 }
 
-Rule rightBracket = LiteralNode(RightBracketTokenLiteral());
+const Rule rightBracket = LiteralNode(RightBracketTokenLiteral());
 
 /// Other
-///
-///
-///
-///
-///
 
-class SemicolonTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^[;]");
+class SemicolonTokenLiteral extends RegexToken {
+  const SemicolonTokenLiteral() : super(r"^[;]");
 }
 
-Rule semicolon = LiteralNode(SemicolonTokenLiteral());
+const Rule semicolon = LiteralNode(SemicolonTokenLiteral());
 
-
-class ColonTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^[:]");
+class ColonTokenLiteral extends RegexToken {
+  const ColonTokenLiteral() : super(r"^[:]");
 }
 
-Rule colon = LiteralNode(ColonTokenLiteral());
+const Rule colon = LiteralNode(ColonTokenLiteral());
 
 /// Fun
 ///
@@ -303,9 +229,8 @@ Rule colon = LiteralNode(ColonTokenLiteral());
 ///
 ///
 
-class ChickenEmojiTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^☺️");
+class ChickenEmojiTokenLiteral extends RegexToken {
+  const ChickenEmojiTokenLiteral() : super(r"^☺️");
 }
 
-Rule chickenEmojiLiteral = LiteralNode(ChickenEmojiTokenLiteral());
+const Rule chickenEmojiLiteral = LiteralNode(ChickenEmojiTokenLiteral());

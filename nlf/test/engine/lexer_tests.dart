@@ -14,7 +14,7 @@ void main() {
             );
         }
 
-        List<NeptuneTokenLiteral> literals = [
+        const List<NeptuneTokenLiteral> literals = [
             TextTokenLiteral(),
             StringWith2QuotesTokenLiteral(),
             RightParanTokenLiteral(),

@@ -2,9 +2,7 @@ library neptune_language_framework;
 
 export 'package:meta/meta.dart';
 
-export 'src/addTokens/english.dart';
-export 'src/engine/controller/NLFController.dart';
-export 'src/engine/interpreter/action.dart';
+export 'src/add_tokens/english.dart';
 export 'src/engine/lexer/lexer.dart';
 export 'src/engine/lexer/matcher.dart';
 export 'src/engine/parser/ast.dart';

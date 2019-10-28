@@ -16,7 +16,7 @@ import '../../neptune_language_framework.dart';
 class Test2Lexer extends Lexer {
     @override
     List<NeptuneTokenLiteral> literals() {
-        return [
+        return const [
 
             LeftParanTokenLiteral(),
             RightParanTokenLiteral(),
@@ -34,7 +34,7 @@ class Test2Lexer extends Lexer {
     }
 
     @override
-    String delimiter() => SpacesLineTokenLiteral.regex;
+    String delimiter() => SpacesLineTokenLiteral.regexx;
 }
 
 /// Parser ------------------------

@@ -5,7 +5,7 @@ import '../../neptune_language_framework.dart';
 class EnglishLexer extends Lexer {
     @override
     List<NeptuneTokenLiteral> literals() {
-        return [
+        return const [
             SingleGreetingTokenLiteral()
         ];
     }
@@ -24,21 +24,18 @@ class EnglishParser extends Parser {
 }
 
 /// Literals -----------------------------------
-class SingleGreetingTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^(hi|hellothere|hello|huhu|heya|hey|hay)");
+class SingleGreetingTokenLiteral extends RegexToken {
+  const SingleGreetingTokenLiteral() : super(r"^(hi|hellothere|hello|huhu|heya|hey|hay)");
 }
 
-LiteralNode singleGreeting = LiteralNode(SingleGreetingTokenLiteral());
+const LiteralNode singleGreeting = LiteralNode(SingleGreetingTokenLiteral());
 
 
-class PronomeTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^(you)");
+class PronomeTokenLiteral extends RegexToken {
+  const PronomeTokenLiteral() : super(r"^(you)");
 }
 
-LiteralNode pronomeGreeting = LiteralNode(PronomeTokenLiteral());
-
+const LiteralNode pronomeGreeting = LiteralNode(PronomeTokenLiteral());
 
 /// Nodes -----------------
 class EnglishNode extends NodeType {

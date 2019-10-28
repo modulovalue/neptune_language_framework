@@ -74,7 +74,7 @@ import '../../neptune_language_framework.dart';
 class CMinusMinusLexer extends Lexer {
     @override
     List<NeptuneTokenLiteral> literals() {
-        return [
+        return const [
 //
 //            /// Braces
 //            ///
@@ -115,12 +115,12 @@ class CMinusMinusLexer extends Lexer {
     }
 
     @override
-    String delimiter() => SpacesLineTokenLiteral.regex;
+    String delimiter() => SpacesLineTokenLiteral.regexx;
 
     @override
     List<String> dontRemoveDelimiterInThisRegex() {
         return [
-            StringWith2QuotesTokenLiteral.regex
+            StringWith2QuotesTokenLiteral.regexx
         ];
     }
 }

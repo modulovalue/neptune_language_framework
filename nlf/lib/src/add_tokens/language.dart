@@ -5,7 +5,7 @@ import '../../neptune_language_framework.dart';
 class TestLexer extends Lexer {
     @override
     List<NeptuneTokenLiteral> literals() {
-        return [
+        return const [
             AddTokenLiteral(),
             AndTokenLiteral(),
             ThenTokenLiteral(),
@@ -33,44 +33,39 @@ class TestParser extends Parser {
 /// TODO dynamic literals e.g. for entering a profile ?
 /// TODO add preprocessor to find profiles with spaces ?
 /// Literals -----------------------------------
-class AddTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^add");
+class AddTokenLiteral extends RegexToken {
+  const AddTokenLiteral() : super(r"^add");
 }
 
-Rule addd = LiteralNode(AddTokenLiteral());
+const Rule addd = LiteralNode(AddTokenLiteral());
 
 
-class RemoveTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^((R|r)(emove)|no)");
+class RemoveTokenLiteral extends RegexToken {
+  const RemoveTokenLiteral() : super(r"^((R|r)(emove)|no)");
 }
 
-Rule removeTokenLiteral = LiteralNode(RemoveTokenLiteral());
+const Rule removeTokenLiteral = LiteralNode(RemoveTokenLiteral());
 
 
-class IDTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^[a-zA-Z\d]+");
+class IDTokenLiteral extends RegexToken {
+  const IDTokenLiteral() : super(r"^[a-zA-Z\d]+");
 }
 
-Rule idTokenLiteral = LiteralNode(IDTokenLiteral());
+const Rule idTokenLiteral = LiteralNode(IDTokenLiteral());
 
 
-class OpenTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^(Open|open)");
+class OpenTokenLiteral extends RegexToken {
+  const OpenTokenLiteral() : super(r"^(Open|open)");
 }
 
-Rule openTokenLiteral = LiteralNode(OpenTokenLiteral());
+const Rule openTokenLiteral = LiteralNode(OpenTokenLiteral());
 
 
-class ChartTokenLiteral extends NeptuneTokenLiteral {
-    @override
-    Matcher matcher() => RegexMatcher(regex: r"^(d|D|h|H|m|M)(C|c)(hart)");
+class ChartTokenLiteral extends RegexToken {
+  const ChartTokenLiteral() : super(r"^(d|D|h|H|m|M)(C|c)(hart)");
 }
 
-Rule chartTokenLiteral = LiteralNode(ChartTokenLiteral());
+const Rule chartTokenLiteral = LiteralNode(ChartTokenLiteral());
 
 
 /// Nodes -----------------

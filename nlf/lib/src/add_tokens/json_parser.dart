@@ -12,7 +12,7 @@ import '../../neptune_language_framework.dart';
 class JsonLexer extends Lexer {
     @override
     List<NeptuneTokenLiteral> literals() {
-        return [
+        return const [
             NullTokenLiteral(),
             FalseBoolTokenLiteral(),
             TrueBoolTokenLiteral(),
@@ -31,12 +31,12 @@ class JsonLexer extends Lexer {
     }
 
     @override
-    String delimiter() => SpacesLineTokenLiteral.regex;
+    String delimiter() => SpacesLineTokenLiteral.regexx;
 
     @override
     List<String> dontRemoveDelimiterInThisRegex() {
         return [
-            JSONStringTokenLiteral.regex
+            JSONStringTokenLiteral.regexx
         ];
     }
 }
