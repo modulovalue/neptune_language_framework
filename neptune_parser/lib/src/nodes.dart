@@ -1,7 +1,6 @@
 import 'package:neptune_lexer/neptune_lexer.dart';
 import 'package:neptune_parser/neptune_parser.dart';
 
-
 abstract class NodeType extends Rule {
   const NodeType();
 
@@ -38,7 +37,7 @@ abstract class NodeType extends Rule {
       }
       if (!nodes.contains(null)) {
         return ASTNodeCommutativeNary(
-            nodes: nodes, value: this, matchResult: null);
+            nodes: nodes, nodeType: this, matchResult: null);
       } else {
 //        throw Exception("Unexpected token '${lookahead[offset].matchedString}' at ${lookahead[offset].positionFrom}");
       }
@@ -82,10 +81,7 @@ class LiteralNode extends NodeType {
   @override
   ASTNode parse(List<LexerMatchResult> lookahead) {
     if (lookahead.first.token.runtimeType == literal) {
-      return ASTNodeLiteral(
-        value: this,
-        matchResult: lookahead.first,
-      );
+      return ASTNodeLiteral(nodeType: this, matchResult: lookahead.first);
     } else {
       return null;
     }

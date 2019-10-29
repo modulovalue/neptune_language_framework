@@ -1,4 +1,4 @@
-import 'lexer.dart';
+import 'package:neptune_lexer/neptune_lexer.dart';
 
 enum MatchingStatus {
   matched,

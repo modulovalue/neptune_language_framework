@@ -30,9 +30,8 @@ class JsonLexer extends Lexer {
   String delimiter() => SpacesLineTokenLiteral.regexx;
 
   @override
-  List<String> dontRemoveDelimiterInThisRegex() {
-    return [JSONStringTokenLiteral.regexx];
-  }
+  List<String> dontRemoveDelimiterInThisRegex() =>
+      [JSONStringTokenLiteral.regexx];
 }
 
 /// Parser ------------------------
