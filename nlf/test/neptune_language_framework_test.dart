@@ -44,8 +44,8 @@ void main() {
     mathexprs("( 2 + 2 ) * a * ( b * c )");
   });
   test('CMM', () {
-    const SimpleLexerPrinter().prettyPrint(CMinusMinusLexer());
-    const SimpleParserPrinter().prettyPrint(CMinusMinusParser());
+    simpleLexerPrettyPrinter(CMinusMinusLexer());
+    simpleParserPrettyPrinter(CMinusMinusParser());
     cminusminus('   int  main ( ) {print("hu i");}');
     cminusminus("int main() { }");
     cminusminus('int mx ( ) {print();}');

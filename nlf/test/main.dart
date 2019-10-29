@@ -103,7 +103,7 @@ class NLFController {
   }
 
   void printInfoToConsole() {
-    const SimpleLexerPrinter().prettyPrint(JsonLexer());
-    const SimpleParserPrinter().prettyPrint(JsonParser());
+    simpleLexerPrettyPrinter(JsonLexer());
+    simpleParserPrettyPrinter(JsonParser());
   }
 }

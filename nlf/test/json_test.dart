@@ -4,8 +4,8 @@ import 'package:neptune_lexer/neptune_lexer.dart';
 import 'package:neptune_parser/neptune_parser.dart';
 
 void main() {
-  const SimpleLexerPrinter().prettyPrint(JsonLexer());
-  const SimpleParserPrinter().prettyPrint(JsonParser());
+  simpleLexerPrettyPrinter(JsonLexer());
+  simpleParserPrettyPrinter(JsonParser());
   test('lone', () {
     jsonParseTest("8239348 {}", false);
     const printTree = false;

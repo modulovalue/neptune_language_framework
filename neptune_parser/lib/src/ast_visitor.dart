@@ -9,7 +9,6 @@ abstract class ASTNodeVisitor<T, U extends NodeType> {
 }
 
 class ASTNodeConsumeCount<T extends NodeType> implements ASTNodeVisitor<int, T> {
-
   const ASTNodeConsumeCount();
 
   @override
