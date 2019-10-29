@@ -1,4 +1,4 @@
-import '../../neptune_parser.dart';
+import 'package:neptune_parser/neptune_parser.dart';
 
 abstract class Rule {
   List<NodeType> nodes();

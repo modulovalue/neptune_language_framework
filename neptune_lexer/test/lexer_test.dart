@@ -1,5 +1,6 @@
 import 'package:neptune_lexer/neptune_lexer.dart';
 import 'package:test/test.dart';
+import 'package:neptune_language_framework/neptune_language_framework.dart';
 
 void main() {
     test("1", () {

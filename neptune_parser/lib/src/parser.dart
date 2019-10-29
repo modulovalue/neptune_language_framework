@@ -1,6 +1,5 @@
 import 'package:neptune_lexer/neptune_lexer.dart';
-
-import '../../neptune_parser.dart';
+import 'package:neptune_parser/neptune_parser.dart';
 
 abstract class Parser<T extends NodeType> {
   const Parser();
