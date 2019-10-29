@@ -3,6 +3,12 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/neptune_lexer/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/neptune_lexer/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/neptune_lexer/build" />
+      <excludeFolder url="file://$MODULE_DIR$/neptune_parser/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/neptune_parser/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/neptune_parser/build" />
       <excludeFolder url="file://$MODULE_DIR$/nlf/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/nlf/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/nlf/build" />

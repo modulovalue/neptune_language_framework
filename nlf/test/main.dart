@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:neptune_language_framework/neptune_language_framework.dart';
-import 'package:neptune_language_framework/src/engine/parser/ast/visitor_pretty_printer.dart';
+import 'package:neptune_parser/neptune_parser.dart';
+import 'package:neptune_lexer/neptune_lexer.dart';
 
 Future main() async {
   print('Neptune Language Framework Evaluator');
@@ -102,7 +103,7 @@ class NLFController {
   }
 
   void printInfoToConsole() {
-    JsonLexer().prettyPrint();
-    JsonParser().prettyPrint(prettyPrintRoot: true);
+    const SimpleLexerPrinter().prettyPrint(JsonLexer());
+    const SimpleParserPrinter().prettyPrint(JsonParser());
   }
 }

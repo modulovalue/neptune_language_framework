@@ -1,60 +1,61 @@
 import 'package:neptune_language_framework/neptune_language_framework.dart';
 import 'package:test/test.dart';
+import 'package:neptune_lexer/neptune_lexer.dart';
+import 'package:neptune_parser/neptune_parser.dart';
 
 import 'main.dart';
 
 void main() {
-    test('-', () {
-        neptuneplus(
-            "add BTC .0 and ETH 43902.0 and BTC 14 then open BTC and "
-                "open XRP and open XRP and open XRP then open "
-                "BTC and open XRP and open XRP and open XRP");
-        neptuneplus("add BTC .0 and ETH 1");
-        neptuneplus("open BTC and open XRP");
-    });
+  test('-', () {
+    neptuneplus("add BTC .0 and ETH 43902.0 and BTC 14 then open BTC and "
+        "open XRP and open XRP and open XRP then open "
+        "BTC and open XRP and open XRP and open XRP");
+    neptuneplus("add BTC .0 and ETH 1");
+    neptuneplus("open BTC and open XRP");
+  });
 
-    test('Basis operations', () {
-        mathexprs("2 * 2");
-        mathexprs("2 + 2");
-        mathexprs("2 + 2 + 2 + 2 + 2");
-        mathexprs("2 * 2");
-        mathexprs("2 * 2 * 10 * 10");
-        mathexprs("23 + 4 * 70");
-        mathexprs("( )");
-    });
-    test('Basis parentheses', () {
-        mathexprs("()");
-        mathexprs("(2+2)");
-        mathexprs("(2*2)");
-    });
-    test('multiple parenthesis', () {
-        mathexprs("((2+2))*2");
-        mathexprs("(2+2)*(2+2)");
-        mathexprs("(2+(2*2))*(2+2)");
-    });
-    test('variables', () {
-        mathexprs("ca * cc");
-        mathexprs("( 2 + 2 ) * ok");
-        mathexprs("( 2 + 2 ) * a * ( b * c )");
-    });
-    test('Emoji', () {
-        mathexprs("ca * ☺️");
-        mathexprs("( 2 + 2 ) * ok");
-        mathexprs("( 2 + 2 ) * a * ( b * c )");
-    });
-    test('CMM', () {
-         CMinusMinusLexer().prettyPrint();
-         CMinusMinusParser().prettyPrint();
-        cminusminus('   int  main ( ) {print("hu i");}');
-        cminusminus("int main() { }");
-        cminusminus('int mx ( ) {print();}');
-        cminusminus("int mx ( ) { } int main ( ) { }");
-        cminusminus("int mx ( int hallo , int hallo ) { }");
-        cminusminus("int mx ( int hallo , int hallo ) { return 5000000 ; }");
-        cminusminus(
-            "int mx ( int hallo , int hallo ) { return 5000000 ; } int mx ( int hallo , int hallo ) { return 5000000 ; }");
+  test('Basis operations', () {
+    mathexprs("2 * 2");
+    mathexprs("2 + 2");
+    mathexprs("2 + 2 + 2 + 2 + 2");
+    mathexprs("2 * 2");
+    mathexprs("2 * 2 * 10 * 10");
+    mathexprs("23 + 4 * 70");
+    mathexprs("( )");
+  });
+  test('Basis parentheses', () {
+    mathexprs("()");
+    mathexprs("(2+2)");
+    mathexprs("(2*2)");
+  });
+  test('multiple parenthesis', () {
+    mathexprs("((2+2))*2");
+    mathexprs("(2+2)*(2+2)");
+    mathexprs("(2+(2*2))*(2+2)");
+  });
+  test('variables', () {
+    mathexprs("ca * cc");
+    mathexprs("( 2 + 2 ) * ok");
+    mathexprs("( 2 + 2 ) * a * ( b * c )");
+  });
+  test('Emoji', () {
+    mathexprs("ca * ☺️");
+    mathexprs("( 2 + 2 ) * ok");
+    mathexprs("( 2 + 2 ) * a * ( b * c )");
+  });
+  test('CMM', () {
+    const SimpleLexerPrinter().prettyPrint(CMinusMinusLexer());
+    const SimpleParserPrinter().prettyPrint(CMinusMinusParser());
+    cminusminus('   int  main ( ) {print("hu i");}');
+    cminusminus("int main() { }");
+    cminusminus('int mx ( ) {print();}');
+    cminusminus("int mx ( ) { } int main ( ) { }");
+    cminusminus("int mx ( int hallo , int hallo ) { }");
+    cminusminus("int mx ( int hallo , int hallo ) { return 5000000 ; }");
+    cminusminus(
+        "int mx ( int hallo , int hallo ) { return 5000000 ; } int mx ( int hallo , int hallo ) { return 5000000 ; }");
 ////
-        cminusminus('''
+    cminusminus('''
             int mx ( ) { 
                 return 5000000 ; 
             } 
@@ -74,17 +75,16 @@ void main() {
                 return 0 ; 
             }
         ''');
-        cminusminus('''
+    cminusminus('''
     int main() { 
         print("Hello World");
     }
         ''');
-    });
-
+  });
 
 //     JsonLexer().prettyPrint();
 //     JsonParser().prettyPrint();
-    test('JSON Parse test', () {
-        jsonParseTest('{"widget":{"debug":"on"}}', printTree: true);
-    });
+  test('JSON Parse test', () {
+    jsonParseTest('{"widget":{"debug":"on"}}', printTree: true);
+  });
 }

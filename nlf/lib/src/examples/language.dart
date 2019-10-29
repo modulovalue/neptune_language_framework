@@ -1,4 +1,5 @@
-import '../../neptune_language_framework.dart';
+import 'package:neptune_lexer/neptune_lexer.dart';
+import 'package:neptune_parser/neptune_parser.dart';
 
 /// Lexer -------------------------
 class TestLexer extends Lexer {

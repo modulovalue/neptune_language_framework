@@ -10,6 +10,10 @@ environment:
 dependencies:
   test: 1.9.3
   meta: any
+  neptune_lexer:
+    path: ../neptune_lexer
+  neptune_parser:
+    path: ../neptune_parser
 
 dev_dependencies:
   extra_pedantic: 1.1.1

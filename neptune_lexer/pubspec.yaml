@@ -1,0 +1,15 @@
+name: neptune_lexer
+description: A starting point for Dart libraries or applications.
+# version: 1.0.0
+# homepage: https://www.example.com
+# author: Modestas Valauskas <valauskasmodestas@gmail.com>
+
+environment:
+  sdk: '>=2.4.0 <3.0.0'
+
+dependencies:
+  meta: any
+
+dev_dependencies:
+  extra_pedantic: 1.1.1
+  test: ^1.6.0

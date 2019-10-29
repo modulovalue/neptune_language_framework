@@ -1,10 +1,11 @@
 import 'package:neptune_language_framework/neptune_language_framework.dart';
-import 'package:neptune_language_framework/src/engine/parser/ast/visitor_to_string_tree.dart';
 import 'package:test/test.dart';
+import 'package:neptune_lexer/neptune_lexer.dart';
+import 'package:neptune_parser/neptune_parser.dart';
 
 void main() {
-  JsonLexer().prettyPrint();
-  JsonParser().prettyPrint();
+  const SimpleLexerPrinter().prettyPrint(JsonLexer());
+  const SimpleParserPrinter().prettyPrint(JsonParser());
   test('lone', () {
     jsonParseTest("8239348 {}", false);
     const printTree = false;

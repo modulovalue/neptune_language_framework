@@ -1,4 +1,5 @@
-import '../../neptune_language_framework.dart';
+import 'package:neptune_lexer/neptune_lexer.dart';
+import 'package:neptune_parser/neptune_parser.dart';
 
 /// Mathematical grammar as posted here but without variables
 /// https://cs.stackexchange.com/questions/23738/grammar-for-parsing-simple-mathematical-expression?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa

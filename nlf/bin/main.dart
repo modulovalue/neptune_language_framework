@@ -1,5 +1,6 @@
-import 'package:neptune_language_framework/neptune_language_framework.dart';
 import 'package:neptune_language_framework/src/examples/list.dart';
+import 'package:neptune_lexer/neptune_lexer.dart';
+import 'package:neptune_parser/neptune_parser.dart';
 
 void main() {
   final lexer = ListLexer();

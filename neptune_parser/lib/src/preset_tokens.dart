@@ -1,0 +1,37 @@
+import 'package:neptune_lexer/neptune_lexer.dart';
+import 'package:neptune_parser/neptune_parser.dart';
+
+const Rule returnn = LiteralNode(ReturnTokenLiteral());
+const Rule whilee = LiteralNode(WhileTokenLiteral());
+const Rule andWord = LiteralNode(AndTokenLiteral());
+const Rule thenWord = LiteralNode(ThenTokenLiteral());
+const Rule nullWord = LiteralNode(NullTokenLiteral());
+const Rule trueBoolWord = LiteralNode(TrueBoolTokenLiteral());
+const Rule falseBoolWord = LiteralNode(FalseBoolTokenLiteral());
+const Rule textTokenLiteral = LiteralNode(TextTokenLiteral());
+const Rule addSymTokenLiteral = LiteralNode(AddSymTokenLiteral());
+const Rule equals = LiteralNode(EqualsTokenLiteral());
+const Rule commaSymTokenLiteral = LiteralNode(CommaSymTokenLiteral());
+const Rule minusSymTokenLiteral = LiteralNode(MinusSymTokenLiteral());
+const Rule mulSymTokenLiteral = LiteralNode(MulSymTokenLiteral());
+const Rule divSymTokenLiteral = LiteralNode(DivSymTokenLiteral());
+const Rule lessSymTokenLiteral = LiteralNode(LessSymTokenLiteral());
+const Rule biggerSymTokenLiteral = LiteralNode(BiggerSymTokenLiteral());
+const Rule intType = LiteralNode(IntTypeTokenLiteral());
+const Rule stringType = LiteralNode(StringTypeTokenLiteral());
+const Rule intTokenLiteral = LiteralNode(IntTokenLiteral());
+const Rule jsonNumberTokenLiteral = LiteralNode(JsonNumberTokenLiteral());
+const Rule stringW2QTokenLiteral = LiteralNode(StringWith2QuotesTokenLiteral());
+const Rule jsonStringTokenLiteral = LiteralNode(JSONStringTokenLiteral());
+const Rule positiveNumberTokenLiteral =
+    LiteralNode(PositiveNumberTokenLiteral());
+const Rule spacesLineTokenLiteral = LiteralNode(SpacesLineTokenLiteral());
+const Rule leftParan = LiteralNode(LeftParanTokenLiteral());
+const Rule rightParan = LiteralNode(RightParanTokenLiteral());
+const Rule leftCurly = LiteralNode(LeftCurlyTokenLiteral());
+const Rule rightCurly = LiteralNode(RightCurlyTokenLiteral());
+const Rule leftBracket = LiteralNode(LeftBracketTokenLiteral());
+const Rule rightBracket = LiteralNode(RightBracketTokenLiteral());
+const Rule semicolon = LiteralNode(SemicolonTokenLiteral());
+const Rule colon = LiteralNode(ColonTokenLiteral());
+const Rule emojiLiteral = LiteralNode(ChickenEmojiTokenLiteral());

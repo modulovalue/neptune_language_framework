@@ -176,6 +176,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  neptune_lexer:
+    dependency: "direct main"
+    description:
+      path: "../neptune_lexer"
+      relative: true
+    source: path
+    version: "0.0.0"
+  neptune_parser:
+    dependency: "direct main"
+    description:
+      path: "../neptune_parser"
+      relative: true
+    source: path
+    version: "0.0.0"
   node_preamble:
     dependency: transitive
     description:

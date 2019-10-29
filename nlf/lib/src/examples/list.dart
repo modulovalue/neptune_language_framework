@@ -1,7 +1,5 @@
-import 'package:neptune_language_framework/neptune_language_framework.dart';
-import 'package:neptune_language_framework/src/engine/lexer/lexer.dart';
-import 'package:neptune_language_framework/src/engine/lexer/matcher.dart';
-import 'package:neptune_language_framework/src/engine/preset_tokens.dart';
+import 'package:neptune_lexer/neptune_lexer.dart';
+import 'package:neptune_parser/neptune_parser.dart';
 
 class ListLexer extends Lexer {
   @override
