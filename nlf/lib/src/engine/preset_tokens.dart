@@ -233,4 +233,4 @@ class ChickenEmojiTokenLiteral extends RegexToken {
   const ChickenEmojiTokenLiteral() : super(r"^☺️");
 }
 
-const Rule chickenEmojiLiteral = LiteralNode(ChickenEmojiTokenLiteral());
+const Rule emojiLiteral = LiteralNode(ChickenEmojiTokenLiteral());

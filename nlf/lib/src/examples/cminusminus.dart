@@ -69,179 +69,238 @@ import '../../neptune_language_framework.dart';
 ///     return 0 ;
 ///     }
 
-
 /// Lexer -------------------------
 class CMinusMinusLexer extends Lexer {
-    @override
-    List<NeptuneTokenLiteral> literals() {
-        return const [
-            /// Braces
-            ///
-            RightCurlyTokenLiteral(),
-            LeftCurlyTokenLiteral(),
-            RightParanTokenLiteral(),
-            LeftParanTokenLiteral(),
+  @override
+  List<NeptuneTokenLiteral> literals() {
+    return const [
+      /// Braces
+      ///
+      RightCurlyTokenLiteral(),
+      LeftCurlyTokenLiteral(),
+      RightParanTokenLiteral(),
+      LeftParanTokenLiteral(),
 
-            /// Math symbols
-            ///
-            EqualsTokenLiteral(),
-            LessSymTokenLiteral(),
-            AddSymTokenLiteral(),
-            MinusSymTokenLiteral(),
-            MulSymTokenLiteral(),
+      /// Math symbols
+      ///
+      EqualsTokenLiteral(),
+      LessSymTokenLiteral(),
+      AddSymTokenLiteral(),
+      MinusSymTokenLiteral(),
+      MulSymTokenLiteral(),
 
-            /// Separate
-            ///
-            SemicolonTokenLiteral(),
-            CommaSymTokenLiteral(),
+      /// Separate
+      ///
+      SemicolonTokenLiteral(),
+      CommaSymTokenLiteral(),
 
-            /// Keywords
-            ///
-            WhileTokenLiteral(),
-            ReturnTokenLiteral(),
+      /// Keywords
+      ///
+      WhileTokenLiteral(),
+      ReturnTokenLiteral(),
 
-            /// Type Names
-            ///
-            IntTypeTokenLiteral(),
-            StringTypeTokenLiteral(),
-            TextTokenLiteral(),
+      /// Type Names
+      ///
+      IntTypeTokenLiteral(),
+      StringTypeTokenLiteral(),
+      TextTokenLiteral(),
 
-            /// Type Literals
-            ///
-            IntTokenLiteral(),
-            StringWith2QuotesTokenLiteral(),
-        ];
-    }
+      /// Type Literals
+      ///
+      IntTokenLiteral(),
+      StringWith2QuotesTokenLiteral(),
+    ];
+  }
 
-    @override
-    String delimiter() => SpacesLineTokenLiteral.regexx;
+  @override
+  String delimiter() => SpacesLineTokenLiteral.regexx;
 
-    @override
-    List<String> dontRemoveDelimiterInThisRegex() {
-        return [
-            StringWith2QuotesTokenLiteral.regexx
-        ];
-    }
+  @override
+  List<String> dontRemoveDelimiterInThisRegex() {
+    return [StringWith2QuotesTokenLiteral.regexx];
+  }
 }
 
 /// Parser ------------------------
-class CMinusMinusParser extends Parser {
-    @override
-    NodeType root() {
-        return Programm();
-    }
+class CMinusMinusParser extends Parser<CMMNode> {
+  @override
+  CMMNode root() => Programm();
 }
 
 /// Nodes -----------------
-class Programm extends NodeType {
-    @override
-    ListOfRules rules() => function.directList().wrap();
+abstract class CMMNode extends NodeType {
+  T visit<T>(CMMVisitor<T> visitor);
 }
 
-class Functionn extends NodeType {
-    @override
-    ListOfRules rules() =>
-        type + textTokenLiteral + leftParan + decl.list(commaSymTokenLiteral) + rightParan + leftCurly + rightCurly
-        | type + textTokenLiteral + leftParan + rightParan + leftCurly + rightCurly
-        | type + textTokenLiteral + leftParan + rightParan + leftCurly + stm.directList() + rightCurly
-        | type + textTokenLiteral + leftParan + decl.list(commaSymTokenLiteral) + rightParan + leftCurly +
-            stm.directList() +
-            rightCurly
-    ;
+class Programm extends CMMNode {
+  @override
+  ListOfRules rules() => function.directList().wrap();
+
+  @override
+  T visit<T>(CMMVisitor<T> visitor) => visitor.program(this);
+}
+
+class Functionn extends CMMNode {
+  @override
+  ListOfRules rules() =>
+      type +
+          textTokenLiteral +
+          leftParan +
+          decl.list(commaSymTokenLiteral) +
+          rightParan +
+          leftCurly +
+          rightCurly |
+      type +
+          textTokenLiteral +
+          leftParan +
+          rightParan +
+          leftCurly +
+          rightCurly |
+      type +
+          textTokenLiteral +
+          leftParan +
+          rightParan +
+          leftCurly +
+          stm.directList() +
+          rightCurly |
+      type +
+          textTokenLiteral +
+          leftParan +
+          decl.list(commaSymTokenLiteral) +
+          rightParan +
+          leftCurly +
+          stm.directList() +
+          rightCurly;
+
+  @override
+  T visit<T>(CMMVisitor<T> visitor) => visitor.function(this);
 }
 
 NodeType function = Functionn();
 
-class Declaration extends NodeType {
-    @override
-    ListOfRules rules() => (type + textTokenLiteral).wrap();
+class Declaration extends CMMNode {
+  @override
+  ListOfRules rules() => (type + textTokenLiteral).wrap();
+
+  @override
+  T visit<T>(CMMVisitor<T> visitor) => visitor.declaration(this);
 }
 
 NodeType decl = Declaration();
 
-class Statement extends NodeType {
-    @override
-    ListOfRules rules() =>
-        decl + semicolon
-        | exp + semicolon
-        | leftCurly + stm.directList() + rightCurly
-        | leftCurly + rightCurly
-        | whilee + leftParan + exp + rightParan + stm
-        | returnn + exp + semicolon
-    ;
+class Statement extends CMMNode {
+  @override
+  ListOfRules rules() =>
+      decl + semicolon |
+      exp + semicolon |
+      leftCurly + stm.directList() + rightCurly |
+      leftCurly + rightCurly |
+      whilee + leftParan + exp + rightParan + stm |
+      returnn + exp + semicolon;
+
+  @override
+  T visit<T>(CMMVisitor<T> visitor) => visitor.statement(this);
 }
 
 NodeType stm = Statement();
 
+class Expression extends CMMNode {
+  @override
+  ListOfRules rules() => textTokenLiteral + equals + exp | exp1 // coersion 0
+      ;
 
-class Expression extends NodeType {
-    @override
-    ListOfRules rules() =>
-        textTokenLiteral + equals + exp
-        | exp1 // coersion 0
-        ;
+  @override
+  T visit<T>(CMMVisitor<T> visitor) => visitor.expression(this);
 }
 
 NodeType exp = Expression();
 
+class Expression1 extends CMMNode {
+  @override
+  ListOfRules rules() {
+    return exp2 + lessSymTokenLiteral + exp2 | exp2 // coersion 1
+        ;
+  }
 
-class Expression1 extends NodeType {
-    @override
-    ListOfRules rules() {
-        return exp2 + lessSymTokenLiteral + exp2
-        | exp2 // coersion 1
-            ;
-    }
+  @override
+  T visit<T>(CMMVisitor<T> visitor) => visitor.expression1(this);
 }
 
 NodeType exp1 = Expression1();
 
-class Expression2 extends NodeType {
-    @override
-    ListOfRules rules() =>
-        exp3 + addSymTokenLiteral + exp2
-        | exp3 + minusSymTokenLiteral + exp2
-        | exp3 // coersion 2
-        ;
+class Expression2 extends CMMNode {
+  @override
+  ListOfRules rules() =>
+      exp3 + addSymTokenLiteral + exp2 |
+      exp3 + minusSymTokenLiteral + exp2 |
+      exp3 // coersion 2
+      ;
+
+  @override
+  T visit<T>(CMMVisitor<T> visitor) => visitor.expression2(this);
 }
 
 NodeType exp2 = Expression2();
 
-class Expression3 extends NodeType {
-    @override
-    ListOfRules rules() =>
-        exp4 + mulSymTokenLiteral + exp3
-        | exp4 // coersion 3
-        ;
+class Expression3 extends CMMNode {
+  @override
+  ListOfRules rules() => exp4 + mulSymTokenLiteral + exp3 | exp4 // coersion 3
+      ;
+
+  @override
+  T visit<T>(CMMVisitor<T> visitor) => visitor.expression3(this);
 }
 
 NodeType exp3 = Expression3();
 
-class Expression4 extends NodeType {
-    @override
-    ListOfRules rules() =>
-        textTokenLiteral + leftParan + exp.list(commaSymTokenLiteral) + rightParan
-        | textTokenLiteral + leftParan + rightParan
-        | textTokenLiteral
-        | stringW2QTokenLiteral
-        | intTokenLiteral
-        | leftParan + exp + rightParan // coersion 4
-        ;
+class Expression4 extends CMMNode {
+  @override
+  ListOfRules rules() =>
+      textTokenLiteral +
+          leftParan +
+          exp.list(commaSymTokenLiteral) +
+          rightParan |
+      textTokenLiteral + leftParan + rightParan |
+      textTokenLiteral |
+      stringW2QTokenLiteral |
+      intTokenLiteral |
+      leftParan + exp + rightParan // coersion 4
+      ;
+
+  @override
+  T visit<T>(CMMVisitor<T> visitor) => visitor.expression4(this);
 }
 
 NodeType exp4 = Expression4();
 
+class Typee extends CMMNode {
+  @override
+  ListOfRules rules() => intType | stringType /* TODO add double */;
 
-class Typee extends NodeType {
-    @override
-    ListOfRules rules() =>
-        intType
-        | stringType
-
-    /// TODO add double
-    ;
+  @override
+  T visit<T>(CMMVisitor<T> visitor) => visitor.type(this);
 }
 
 NodeType type = Typee();
 
+abstract class CMMVisitor<T> {
+  T program(Programm node);
 
+  T function(Functionn node);
+
+  T declaration(Declaration node);
+
+  T statement(Statement node);
+
+  T expression(Expression node);
+
+  T expression1(Expression1 node);
+
+  T expression2(Expression2 node);
+
+  T expression3(Expression3 node);
+
+  T expression4(Expression4 node);
+
+  T type(Typee node);
+}

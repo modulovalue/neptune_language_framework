@@ -12,7 +12,7 @@ abstract class PrettyPrinter {
 }
 
 class PrettyPrinterTemplate {
-    void printTemplate({@required Function() printHeader, Function() printBody}) {
+    static void printTemplate({@required Function() printHeader, Function() printBody}) {
         printHeader();
         paddedPrint("\n");
         printBody();

@@ -1,8 +1,6 @@
 import 'package:neptune_language_framework/neptune_language_framework.dart';
 
-abstract class NodeType extends Rule
-    with PrettyPrinterTemplate
-    implements PrettyPrinter {
+abstract class NodeType extends Rule {
   const NodeType();
 
   ListOfRules rules();
@@ -10,8 +8,10 @@ abstract class NodeType extends Rule
   @override
   List<NodeType> nodes() => [this];
 
-  int calcOffset(List<ASTNode> nodes) =>
-      nodes.fold<int>(0, (prev, node) => prev += node?.consumeCount() ?? 0);
+  int calcOffset(List<ASTNode> nodes) => nodes.fold<int>(
+      0,
+      (prev, node) =>
+          prev += node?.visit?.call<int>(const ASTNodeConsumeCount()) ?? 0);
 
   ASTNode parse(List<LexerMatchResult> lookahead) {
     for (final rule in rules().rulesLists) {
@@ -23,8 +23,7 @@ abstract class NodeType extends Rule
           nodes.add(null);
 
           /// TODO Mark last rule and maybe give feedback on what was expected
-//                    throw "No matching rule found '${lookahead[offset].matchedString}' at ${lookahead[offset]
-//                        .positionFrom}";
+          /// throw "No matching rule found '${lookahead[offset].matchedString}' at ${lookahead[offset].positionFrom}";
         } else {
           final node = value.value.parse(lookahead.sublist(offset).toList());
           if (node == null) {
@@ -36,39 +35,31 @@ abstract class NodeType extends Rule
         }
       }
       if (!nodes.contains(null)) {
-        return ASTNodeCommutativeBinary(
+        return ASTNodeCommutativeNary(
             nodes: nodes, value: this, matchResult: null);
       } else {
-//        throw Exception(
-//            "Unexpected token '${lookahead[offset].matchedString}' at ${lookahead[offset].positionFrom}");
+//        throw Exception("Unexpected token '${lookahead[offset].matchedString}' at ${lookahead[offset].positionFrom}");
       }
     }
     return null;
   }
 
-  Rule list(Rule e) => DynamicNode("List+ of $this with ${e.toString()}",
+  Rule list(Rule e) => NestedNode("List+ of $this with ${e.toString()}",
       (self) => this + e + self | this + e | this);
 
-  Rule directList() => DynamicNode(
+  Rule directList() => NestedNode(
       "List+ of $this with no separator", (self) => this + self | this);
 
   @override
-  void prettyPrint({NodeTypePrinter printer = const BNFNodeTypePrinter()}) {
-    printer.prettyPrint(this);
-  }
-
-  @override
-  String toString() {
-    return "$magentaClr" + runtimeType.toString() + "$resetCode";
-  }
+  String toString() => "$magentaClr" + runtimeType.toString() + "$resetCode";
 }
 
-class DynamicNode extends NodeType {
+class NestedNode extends NodeType {
   final String description;
 
   ListOfRules listOfRules;
 
-  DynamicNode(this.description, ListOfRules Function(NodeType self) source) {
+  NestedNode(this.description, ListOfRules Function(NodeType self) source) {
     listOfRules = source(this);
   }
 

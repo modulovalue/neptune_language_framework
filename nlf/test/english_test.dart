@@ -1,4 +1,5 @@
 import 'package:neptune_language_framework/neptune_language_framework.dart';
+import 'package:neptune_language_framework/src/engine/parser/ast/visitor_to_string_tree.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -23,8 +24,8 @@ void executePipeline(String input, Lexer lexer, Parser parser, bool succeed, {bo
 
     if (lexerResult.respone is LexerResponseSuccessful) {
         parserResult = parser.run(lexerResult.successfulResult);
-        if (!(parserResult.respone is ParserResponseSuccessful)) {
-            print(parserResult.respone.toString());
+        if (!(parserResult.response is ParserResponseSuccessful)) {
+            print(parserResult.response.toString());
         }
 
         print("Execution: "
@@ -47,7 +48,7 @@ void executePipeline(String input, Lexer lexer, Parser parser, bool succeed, {bo
     String b = "-1";
 
     try {
-        a = parserResult.rootNode?.toStringTree(true);
+        a = parserResult.rootNode?.visit(const ToStringTreeVisitor(true));
         b = lexerResult.successfulResult.map((f) => f.matchedString).join("");
     } catch (e, f) {
         print(e.toString() + " " + f.toString());

@@ -12,7 +12,7 @@ class SimpleParserPrinter extends ParserPrinter {
 
     @override
     void prettyPrint(Parser parser) {
-        parser.printTemplate(printHeader: () {
+        PrettyPrinterTemplate.printTemplate(printHeader: () {
             paddedPrint(r"______                                     _                 ");
             paddedPrint(r"| ___ \                                   | |                ");
             paddedPrint(r"| |_/ /_ _ _ __ ___  ___ _ __  __   ____ _| |_   _  ___  ___ ");

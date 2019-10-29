@@ -27,12 +27,12 @@ class ParserExecutionInfo {
 
 class ParserResult {
   final ASTNode rootNode;
-  final ParserResponse respone;
+  final ParserResponse response;
   final ParserExecutionInfo executionInfo;
 
   const ParserResult({
     @required this.rootNode,
-    @required this.respone,
+    @required this.response,
     @required this.executionInfo,
   });
 }

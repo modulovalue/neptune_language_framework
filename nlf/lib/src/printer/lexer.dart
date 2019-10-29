@@ -13,7 +13,7 @@ class SimpleLexerPrinter extends LexerPrinter {
 
     @override
     void prettyPrint(Lexer lexer) {
-        lexer.printTemplate(printHeader: () {
+        PrettyPrinterTemplate.printTemplate(printHeader: () {
             paddedPrint(r" _                                     _                 ");
             paddedPrint(r"| |                                   | |                ");
             paddedPrint(r"| |     _____  _____ _ __  __   ____ _| |_   _  ___  ___ ");

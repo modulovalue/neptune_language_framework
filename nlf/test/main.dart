@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:neptune_language_framework/neptune_language_framework.dart';
+import 'package:neptune_language_framework/src/engine/parser/ast/visitor_pretty_printer.dart';
 
 Future main() async {
   print('Neptune Language Framework Evaluator');
@@ -54,7 +55,8 @@ void executePipeline(
       input,
       parserResultCallback: (ParserResult result) {
         if (prettyPrintCallback != null) {
-          prettyPrintCallback(result.rootNode.prettyPrint("", true));
+          prettyPrintCallback(
+              result.rootNode.visit(const PrettyPrinterVisitor("", true)));
         }
       },
     )
@@ -78,8 +80,8 @@ class NLFController {
 
     if (lexerResult.respone is LexerResponseSuccessful) {
       parserResult = parser.run(lexerResult.successfulResult);
-      if (parserResult.respone is! ParserResponseSuccessful) {
-        print(parserResult.respone.toString());
+      if (parserResult.response is! ParserResponseSuccessful) {
+        print(parserResult.response.toString());
       }
 
       if (printExecutionTime) {

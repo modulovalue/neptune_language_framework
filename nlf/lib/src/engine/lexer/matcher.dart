@@ -47,7 +47,5 @@ class RegexToken implements NeptuneTokenLiteral {
   }
 
   @override
-  String toString() {
-    return "'" + regex + "'";
-  }
+  String toString() => "'" + regex + "'";
 }

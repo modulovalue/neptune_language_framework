@@ -146,7 +146,8 @@ abstract class Lexer extends Object
         leftPaddingRemovedPos,
       );
 
-      final Match rawTokenDelimiterMatch = RegExp(delimiter).matchAsPrefix(rawToken);
+      final Match rawTokenDelimiterMatch =
+          RegExp(delimiter).matchAsPrefix(rawToken);
       if (rawTokenDelimiterMatch == null) {
         final finishedRun =
             getMatchForRawToken(firstRun, addMatch, literals, delimiter);
@@ -159,7 +160,7 @@ abstract class Lexer extends Object
         // ignore: parameter_assignments
         leftPaddingRemovedPos = finishedRun.key.positionTo;
       } else {
-        lastLexerResponse = const  LexerResponseSuccessful();
+        lastLexerResponse = const LexerResponseSuccessful();
         // ignore: parameter_assignments
         leftPaddingRemovedPos += 1;
       }
@@ -255,5 +256,6 @@ class LexerMatchResult {
   }
 
   @override
-  String toString() => "'$matchedString' $positionFrom $positionTo";
+  String toString() =>
+      'LexerMatchResult{status: $status, token: $token, matchedString: $matchedString, positionFrom: $positionFrom, left: $left}';
 }

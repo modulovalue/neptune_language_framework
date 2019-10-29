@@ -1,6 +1,5 @@
 import '../../neptune_language_framework.dart';
 
-
 /// Lexer -------------------------
 class TestLexer extends Lexer {
     @override
@@ -25,13 +24,9 @@ class TestLexer extends Lexer {
 /// Parser ------------------------
 class TestParser extends Parser {
     @override
-    NodeType root() {
-        return TypeOfActionNode();
-    }
+    NodeType root() => TypeOfActionNode();
 }
 
-/// TODO dynamic literals e.g. for entering a profile ?
-/// TODO add preprocessor to find profiles with spaces ?
 /// Literals -----------------------------------
 class AddTokenLiteral extends RegexToken {
   const AddTokenLiteral() : super(r"^add");
@@ -39,13 +34,11 @@ class AddTokenLiteral extends RegexToken {
 
 const Rule addd = LiteralNode(AddTokenLiteral());
 
-
 class RemoveTokenLiteral extends RegexToken {
   const RemoveTokenLiteral() : super(r"^((R|r)(emove)|no)");
 }
 
 const Rule removeTokenLiteral = LiteralNode(RemoveTokenLiteral());
-
 
 class IDTokenLiteral extends RegexToken {
   const IDTokenLiteral() : super(r"^[a-zA-Z\d]+");
@@ -53,20 +46,17 @@ class IDTokenLiteral extends RegexToken {
 
 const Rule idTokenLiteral = LiteralNode(IDTokenLiteral());
 
-
 class OpenTokenLiteral extends RegexToken {
   const OpenTokenLiteral() : super(r"^(Open|open)");
 }
 
 const Rule openTokenLiteral = LiteralNode(OpenTokenLiteral());
 
-
 class ChartTokenLiteral extends RegexToken {
   const ChartTokenLiteral() : super(r"^(d|D|h|H|m|M)(C|c)(hart)");
 }
 
 const Rule chartTokenLiteral = LiteralNode(ChartTokenLiteral());
-
 
 /// Nodes -----------------
 class TypeOfActionNode extends NodeType {

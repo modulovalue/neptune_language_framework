@@ -1,11 +1,11 @@
 import 'package:neptune_language_framework/neptune_language_framework.dart';
 
-abstract class Parser extends Object
+abstract class Parser<T extends NodeType> extends Object
     with PrettyPrinterTemplate
     implements PrettyPrinter {
   const Parser();
 
-  NodeType root();
+  T root();
 
   ParserResult run(List<LexerMatchResult> expressions) {
     ParserResponse response;
@@ -23,7 +23,7 @@ abstract class Parser extends Object
 
     return ParserResult(
       rootNode: rootNode,
-      respone: response ?? const ParserResponseSuccessful(),
+      response: response ?? const ParserResponseSuccessful(),
       executionInfo: ParserExecutionInfo(durationToExecute: timeElapsed),
     );
   }
@@ -35,7 +35,7 @@ abstract class Parser extends Object
       NodeTypePrinter nodeTypePrinter = const BNFNodeTypePrinter()}) {
     printer.prettyPrint(this);
     if (prettyPrintRoot) {
-      root().prettyPrint(printer: nodeTypePrinter);
+      nodeTypePrinter.prettyPrint(root());
     }
   }
 }

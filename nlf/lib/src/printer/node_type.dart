@@ -11,7 +11,7 @@ class BNFNodeTypePrinter extends NodeTypePrinter {
 
   @override
   void prettyPrint(NodeType root) {
-    root.printTemplate(printHeader: () {
+    PrettyPrinterTemplate.printTemplate(printHeader: () {
       paddedPrint(r"______ _____  _____ _____   ______ _   _ ______ ");
       paddedPrint(r"| ___ \  _  ||  _  |_   _|  | ___ \ \ | ||  ___|");
       paddedPrint(r"| |_/ / | | || | | | | |(_) | |_/ /  \| || |_   ");
@@ -44,7 +44,7 @@ class BNFNodeTypePrinter extends NodeTypePrinter {
                   !nodes.contains(nodeType)) {
                 nodes.add(nodeType);
               }
-              return nodeType.toString();
+              return nodeType.toString() ;
             }).join(", ");
           })
           .toList()
