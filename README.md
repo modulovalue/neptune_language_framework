@@ -1,4 +1,3 @@
-# nlf_archived
+# neptune_language_framework
 
-Early 2018
-qnd learning lexing and parsing
+Revived Lexer & Parser
