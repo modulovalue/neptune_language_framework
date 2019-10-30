@@ -12,7 +12,9 @@ import 'package:neptune_parser/neptune_parser.dart';
 /// < factor > ::= (< expression >) | < float > | < var >
 ///
 /// Lexer -------------------------
-class Test2Lexer extends Lexer {
+class MathLexer extends Lexer {
+  const MathLexer();
+
   @override
   List<NeptuneTokenLiteral> literals() {
     return const [
@@ -26,7 +28,6 @@ class Test2Lexer extends Lexer {
 //
       IntTokenLiteral(),
       TextTokenLiteral(),
-      ChickenEmojiTokenLiteral(),
     ];
   }
 
@@ -35,25 +36,27 @@ class Test2Lexer extends Lexer {
 }
 
 /// Parser ------------------------
-class Test2Parser extends Parser<Test2Node> {
+class MathParser extends Parser<MathNode> {
+  const MathParser();
+
   @override
-  Test2Node root() => TypeOfActionNode2();
+  MathNode root() => TypeOfActionNode2();
 }
 
 /// Nodes -----------------
-abstract class Test2Node extends NodeType {
-  T visit<T>(Test2Visitor<T> visitor);
+abstract class MathNode extends NodeType {
+  T visit<T>(MathVisitor<T> visitor);
 }
 
-class TypeOfActionNode2 extends Test2Node {
+class TypeOfActionNode2 extends MathNode {
   @override
   ListOfRules rules() => expr.wrap();
 
   @override
-  T visit<T>(Test2Visitor<T> visitor) => visitor.typeOfAction2(this);
+  T visit<T>(MathVisitor<T> visitor) => visitor.typeOfAction2(this);
 }
 
-class ExpressionNode extends Test2Node {
+class ExpressionNode extends MathNode {
   @override
   ListOfRules rules() =>
       term + addSymTokenLiteral + expr |
@@ -61,12 +64,12 @@ class ExpressionNode extends Test2Node {
       term;
 
   @override
-  T visit<T>(Test2Visitor<T> visitor) => visitor.expression(this);
+  T visit<T>(MathVisitor<T> visitor) => visitor.expression(this);
 }
 
 NodeType expr = ExpressionNode();
 
-class TermNode extends Test2Node {
+class TermNode extends MathNode {
   @override
   ListOfRules rules() =>
       factor + mulSymTokenLiteral + term |
@@ -74,27 +77,26 @@ class TermNode extends Test2Node {
       factor;
 
   @override
-  T visit<T>(Test2Visitor<T> visitor) => visitor.term(this);
+  T visit<T>(MathVisitor<T> visitor) => visitor.term(this);
 }
 
 NodeType term = TermNode();
 
-class FactorNode extends Test2Node {
+class FactorNode extends MathNode {
   @override
   ListOfRules rules() =>
       leftParan + expr + rightParan |
       leftParan + rightParan |
       intTokenLiteral |
-      textTokenLiteral |
-      emojiLiteral;
+      textTokenLiteral;
 
   @override
-  T visit<T>(Test2Visitor<T> visitor) => visitor.factor(this);
+  T visit<T>(MathVisitor<T> visitor) => visitor.factor(this);
 }
 
 NodeType factor = FactorNode();
 
-abstract class Test2Visitor<T> {
+abstract class MathVisitor<T> {
   T typeOfAction2(TypeOfActionNode2 node);
 
   T expression(ExpressionNode node);

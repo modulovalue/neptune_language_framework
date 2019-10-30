@@ -9,6 +9,8 @@ import 'package:neptune_parser/neptune_parser.dart';
 
 /// Lexer -------------------------
 class JsonLexer extends Lexer {
+  const JsonLexer();
+
   @override
   List<NeptuneTokenLiteral> literals() {
     return const [
@@ -36,6 +38,8 @@ class JsonLexer extends Lexer {
 
 /// Parser ------------------------
 class JsonParser extends Parser {
+  const JsonParser();
+
   @override
   NodeType root() => JSONValuee();
 }

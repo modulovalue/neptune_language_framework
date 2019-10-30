@@ -1,4 +1,5 @@
 
+import 'package:meta/meta.dart';
 import 'package:neptune_lexer/neptune_lexer.dart';
 import 'package:neptune_parser/neptune_parser.dart';
 
@@ -21,12 +22,12 @@ class ASTNodeConsumeCount<T extends NodeType> implements ASTNodeVisitor<int, T> 
 }
 
 class PrettyPrinterVisitor<T extends NodeType> implements ASTNodeVisitor<String, T> {
-  static const bool html = false;
+  final bool noColor;
 
   final String indent;
   final bool last;
 
-  const PrettyPrinterVisitor(this.indent, this.last);
+  const PrettyPrinterVisitor(this.indent, this.last, {@required this.noColor});
 
   @override
   String literal(ASTNodeLiteral node) {
@@ -36,10 +37,10 @@ class PrettyPrinterVisitor<T extends NodeType> implements ASTNodeVisitor<String,
     } else {
       prin += "|-";
     }
-    if (html) {
-      return "$prin ${node.matchResult.matchedString} $node{matchResult.token.runtimeType}\n";
+    if (noColor) {
+      return "$prin ${node.matchResult.matchedString} ${node.matchResult.token.describe()}\n";
     } else {
-      return "$prin $redClr${node.matchResult.matchedString}$resetCode $yellowClr ${node.matchResult.token.runtimeType} $resetCode\n";
+      return "$prin $redClr${node.matchResult.matchedString}$resetCode $yellowClr ${node.matchResult.token.describe()} $resetCode\n";
     }
   }
 
@@ -55,8 +56,8 @@ class PrettyPrinterVisitor<T extends NodeType> implements ASTNodeVisitor<String,
       _indent += "| ";
     }
 
-    if (html) {
-      prin = "$prin ${node.nodeType.toString()}\n";
+    if (noColor) {
+      prin = "$prin ${node.nodeType.runtimeType}\n";
     } else {
       prin = "$prin $cyanClr${node.nodeType.toString()} $resetCode\n";
     }
@@ -64,7 +65,7 @@ class PrettyPrinterVisitor<T extends NodeType> implements ASTNodeVisitor<String,
     for (int i = 0; i < node.nodes.length; i++) {
       // ignore: use_string_buffers
       prin += node.nodes[i]
-          .visit(PrettyPrinterVisitor(_indent, i == node.nodes.length - 1));
+          .visit(PrettyPrinterVisitor(_indent, i == node.nodes.length - 1, noColor: noColor));
     }
 
     return prin;

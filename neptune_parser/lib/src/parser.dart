@@ -24,15 +24,27 @@ abstract class Parser<T extends NodeType> {
     return ParserResult(
       rootNode: rootNode,
       response: response ?? const ParserResponseSuccessful(),
-      executionInfo: ParserExecutionInfo(durationToExecute: timeElapsed),
+      durationToExecute: timeElapsed,
     );
   }
+}
+
+class ParserResult {
+  final ASTNode rootNode;
+  final ParserResponse response;
+  final Duration durationToExecute;
+
+  const ParserResult({
+    @required this.rootNode,
+    @required this.response,
+    @required this.durationToExecute,
+  });
 }
 
 abstract class ParserResponse {
   final String shortDescription;
 
-  const ParserResponse(this.shortDescription);
+  const ParserResponse._(this.shortDescription);
 
   @override
   String toString() =>
@@ -40,27 +52,9 @@ abstract class ParserResponse {
 }
 
 class ParserResponseSuccessful extends ParserResponse {
-  const ParserResponseSuccessful() : super("success");
+  const ParserResponseSuccessful() : super._("success");
 }
 
 class ParserResponseUnknownError extends ParserResponse {
-  const ParserResponseUnknownError(String description) : super(description);
-}
-
-class ParserExecutionInfo {
-  final Duration durationToExecute;
-
-  const ParserExecutionInfo({@required this.durationToExecute});
-}
-
-class ParserResult {
-  final ASTNode rootNode;
-  final ParserResponse response;
-  final ParserExecutionInfo executionInfo;
-
-  const ParserResult({
-    @required this.rootNode,
-    @required this.response,
-    @required this.executionInfo,
-  });
+  const ParserResponseUnknownError(String description) : super._(description);
 }

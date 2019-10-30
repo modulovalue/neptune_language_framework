@@ -1,46 +1,63 @@
 import 'package:neptune_lexer/neptune_lexer.dart';
 import 'package:neptune_parser/neptune_parser.dart';
 
-void simpleParserPrettyPrinter(Parser parser) {
-  printTemplate(printHeader: () {
-    paddedPrint(
-        r"______                                     _                 ");
-    paddedPrint(
-        r"| ___ \                                   | |                ");
-    paddedPrint(
-        r"| |_/ /_ _ _ __ ___  ___ _ __  __   ____ _| |_   _  ___  ___ ");
-    paddedPrint(
-        r"|  __/ _` | '__/ __|/ _ \ '__| \ \ / / _` | | | | |/ _ \/ __|");
-    paddedPrint(
-        r"| | | (_| | |  \__ \  __/ |     \ V / (_| | | |_| |  __/\__ \");
-    paddedPrint(
-        r"\_|  \__,_|_|  |___/\___|_|      \_/ \__,_|_|\__,_|\___||___/");
-  }, printBody: () {
-    paddedPrint("Parser", parser.runtimeType.toString());
-    paddedPrint("Root", parser.root().runtimeType.toString());
-  });
-  prettyPrintBNFNodeType(parser.root());
+String simpleParserPrettyPrinterText(Parser parser, PaddedText pad) {
+  String ret = "";
+  ret += printTextTemplate(
+      printHeader: () {
+        String ret = "";
+        ret += pad(
+            r"______                                     _                 ");
+        ret += pad(
+            r"| ___ \                                   | |                ");
+        ret += pad(
+            r"| |_/ /_ _ _ __ ___  ___ _ __  __   ____ _| |_   _  ___  ___ ");
+        ret += pad(
+            r"|  __/ _` | '__/ __|/ _ \ '__| \ \ / / _` | | | | |/ _ \/ __|");
+        ret += pad(
+            r"| | | (_| | |  \__ \  __/ |     \ V / (_| | | |_| |  __/\__ \");
+        ret += pad(
+            r"\_|  \__,_|_|  |___/\___|_|      \_/ \__,_|_|\__,_|\___||___/");
+        return ret;
+      },
+      printBody: () {
+        String ret = "";
+        ret += pad("Parser", second: parser.runtimeType.toString());
+        ret += pad("Root", second: parser.root().runtimeType.toString());
+        return ret;
+      },
+      pad: pad);
+  ret += prettyPrintBNFNodeTypeText(parser.root(), pad);
+  return ret;
 }
 
-void prettyPrintBNFNodeType(NodeType root) {
-  printTemplate(printHeader: () {
-    paddedPrint(r"______ _____  _____ _____   ______ _   _ ______ ");
-    paddedPrint(r"| ___ \  _  ||  _  |_   _|  | ___ \ \ | ||  ___|");
-    paddedPrint(r"| |_/ / | | || | | | | |(_) | |_/ /  \| || |_   ");
-    paddedPrint(r"|    /| | | || | | | | |    | ___ \ . ` ||  _|  ");
-    paddedPrint(r"| |\ \\ \_/ /\ \_/ / | | _  | |_/ / |\  || |    ");
-    paddedPrint(r"\_| \_|\___/  \___/  \_/(_) \____/\_| \_/\_|    ");
-    paddedPrint("\n");
-  }, printBody: () {
-    paddedPrint("Root:", root.runtimeType.toString());
-    _printNode(root);
-  });
+String prettyPrintBNFNodeTypeText(NodeType root, PaddedText pad) {
+  return printTextTemplate(
+      printHeader: () {
+        String ret = "";
+        ret += pad(r"______ _____  _____ _____   ______ _   _ ______ ");
+        ret += pad(r"| ___ \  _  ||  _  |_   _|  | ___ \ \ | ||  ___|");
+        ret += pad(r"| |_/ / | | || | | | | |(_) | |_/ /  \| || |_   ");
+        ret += pad(r"|    /| | | || | | | | |    | ___ \ . ` ||  _|  ");
+        ret += pad(r"| |\ \\ \_/ /\ \_/ / | | _  | |_/ / |\  || |    ");
+        ret += pad(r"\_| \_|\___/  \___/  \_/(_) \____/\_| \_/\_|    ");
+        ret += pad("\n");
+        return ret;
+      },
+      printBody: () {
+        String ret = "";
+        ret += pad("Root:", second: root.runtimeType.toString());
+        ret += _printNode(root, pad);
+        return ret;
+      },
+      pad: pad);
 }
 
-void _printNode(NodeType node) {
+String _printNode(NodeType node, PaddedText pad) {
   final List<NodeType> nodes = [];
   final List<String> alreadyVisited = [];
 
+  String ret = "";
   nodes.add(node);
   while (nodes.isNotEmpty) {
     final firstNode = nodes.first;
@@ -63,12 +80,13 @@ void _printNode(NodeType node) {
         .join("\n" + "".padLeft(29) + "| ");
 
     if (nodeBnf != "") {
-      paddedPrint(
+      ret += pad(
         firstNode.runtimeType.toString(),
-        nodeBnf + "\n",
+        second: nodeBnf,
       );
     }
 
     alreadyVisited.add(nodes.removeAt(0).toString());
   }
+  return ret;
 }

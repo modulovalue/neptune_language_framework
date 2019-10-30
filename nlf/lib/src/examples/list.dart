@@ -3,6 +3,8 @@ import 'package:neptune_lexer/neptune_lexer.dart';
 import 'package:neptune_parser/neptune_parser.dart';
 
 class ListLexer extends Lexer {
+  const ListLexer();
+
   @override
   List<NeptuneTokenLiteral> literals() {
     return const [
@@ -22,6 +24,8 @@ class ListLexer extends Lexer {
 
 /// Parser ------------------------
 class ListParser extends Parser<ListNode> {
+  const ListParser();
+
   @override
   ListNode root() => ListAction();
 }

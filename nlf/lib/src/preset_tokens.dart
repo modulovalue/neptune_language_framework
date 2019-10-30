@@ -222,16 +222,3 @@ class ColonTokenLiteral extends RegexToken {
 }
 
 const Rule colon = LiteralNode(ColonTokenLiteral());
-
-/// Fun
-///
-///
-///
-///
-///
-
-class ChickenEmojiTokenLiteral extends RegexToken {
-  const ChickenEmojiTokenLiteral() : super(r"^☺️");
-}
-
-const Rule emojiLiteral = LiteralNode(ChickenEmojiTokenLiteral());

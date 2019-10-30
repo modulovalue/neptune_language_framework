@@ -44,8 +44,8 @@ void main() {
     mathexprs("( 2 + 2 ) * a * ( b * c )");
   });
   test('CMM', () {
-    simpleLexerPrettyPrinter(CMinusMinusLexer());
-    simpleParserPrettyPrinter(CMinusMinusParser());
+    print(simpleLexerPrettyPrinterText(CMinusMinusLexer(), paddedTextConsole));
+    print(simpleParserPrettyPrinterText(CMinusMinusParser(), paddedTextConsole));
     cminusminus('   int  main ( ) {print("hu i");}');
     cminusminus("int main() { }");
     cminusminus('int mx ( ) {print();}');

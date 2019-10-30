@@ -7,15 +7,16 @@ enum MatchingStatus {
 
 abstract class NeptuneTokenLiteral {
   LexerMatchResult parse(String str, int lastPositionTo);
+
+  String describe();
 }
 
 /// Regex Troubleshooting:
 ///
-/// - Each regex should start with a caret '^' to
+/// - Each regex should start with a caret '^'
 ///
 /// - If you're trying to parse multiples of something like lalalala with [la]+
 ///   then don't forget to use the + and not the * to not match zero characters
-///
 class RegexToken implements NeptuneTokenLiteral {
   final String regex;
 
@@ -46,13 +47,14 @@ class RegexToken implements NeptuneTokenLiteral {
     }
 
     return LexerMatchResult(
-        matchedString: matchedString,
-        status: status,
-        token: this,
-        positionFrom: lastPositionTo ?? 0,
-        left: leftString);
+      matchedString: matchedString,
+      status: status,
+      token: this,
+      positionFrom: lastPositionTo ?? 0,
+      left: leftString,
+    );
   }
 
   @override
-  String toString() => "'" + regex + "'";
+  String describe() => "$runtimeType $regex";
 }

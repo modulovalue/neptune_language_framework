@@ -1,24 +1,39 @@
 import 'package:neptune_lexer/neptune_lexer.dart';
 
-void simpleLexerPrettyPrinter(Lexer lexer) {
-  printTemplate(printHeader: () {
-    paddedPrint(r" _                                     _                 ");
-    paddedPrint(r"| |                                   | |                ");
-    paddedPrint(r"| |     _____  _____ _ __  __   ____ _| |_   _  ___  ___ ");
-    paddedPrint(r"| |    / _ \ \/ / _ \ '__| \ \ / / _` | | | | |/ _ \/ __|");
-    paddedPrint(r"| |___|  __/>  <  __/ |     \ V / (_| | | |_| |  __/\__ \");
-    paddedPrint(r"\_____/\___/_/\_\___|_|      \_/ \__,_|_|\__,_|\___||___/");
-  }, printBody: () {
-    paddedPrint("Lexer", lexer.runtimeType.toString());
-    paddedPrint("Delimiter", lexer.delimiter());
-    paddedPrint(
-        "Dont split this", lexer.dontRemoveDelimiterInThisRegex().join(", "));
+String simpleLexerPrettyPrinterText(Lexer lexer, PaddedText pad) {
+  return printTextTemplate(
+      printHeader: () {
+        String ret = "";
+        ret +=
+            pad(r" _                                     _                 ");
+        ret +=
+            pad(r"| |                                   | |                ");
+        ret +=
+            pad(r"| |     _____  _____ _ __  __   ____ _| |_   _  ___  ___ ");
+        ret +=
+            pad(r"| |    / _ \ \/ / _ \ '__| \ \ / / _` | | | | |/ _ \/ __|");
+        ret +=
+            pad(r"| |___|  __/>  <  __/ |     \ V / (_| | | |_| |  __/\__ \");
+        ret +=
+            pad(r"\_____/\___/_/\_\___|_|      \_/ \__,_|_|\__,_|\___||___/");
+        return ret;
+      },
+      printBody: () {
+        String ret = "";
+        ret += pad("Lexer", second: lexer.runtimeType.toString());
+        ret += pad("Delimiter", second: lexer.delimiter());
+        ret += pad("Dont split this",
+            second: lexer.dontRemoveDelimiterInThisRegex().join(", "));
 
-    paddedPrint("");
+        ret += pad("");
 
-    lexer.literals().asMap().forEach((int index, NeptuneTokenLiteral f) {
-      paddedPrint("Literal " + index.toString() + ":",
-          f.toString().padRight(27) + "$greenClr${f.runtimeType}$resetCode");
-    });
-  });
+        lexer.literals().asMap().forEach((int index, NeptuneTokenLiteral f) {
+          ret += pad(
+            "Literal " + index.toString() + ":",
+            second: f.toString().padRight(27),
+          );
+        });
+        return ret;
+      },
+      pad: pad);
 }

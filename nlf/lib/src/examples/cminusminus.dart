@@ -73,6 +73,9 @@ import 'package:neptune_parser/neptune_parser.dart';
 
 /// Lexer -------------------------
 class CMinusMinusLexer extends Lexer {
+
+  const CMinusMinusLexer();
+
   @override
   List<NeptuneTokenLiteral> literals() {
     return const [
@@ -118,13 +121,13 @@ class CMinusMinusLexer extends Lexer {
   String delimiter() => SpacesLineTokenLiteral.regexx;
 
   @override
-  List<String> dontRemoveDelimiterInThisRegex() {
-    return [StringWith2QuotesTokenLiteral.regexx];
-  }
+  List<String> dontRemoveDelimiterInThisRegex() => [StringWith2QuotesTokenLiteral.regexx];
 }
 
 /// Parser ------------------------
 class CMinusMinusParser extends Parser<CMMNode> {
+  const CMinusMinusParser();
+
   @override
   CMMNode root() => Programm();
 }

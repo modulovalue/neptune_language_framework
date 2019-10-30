@@ -3,6 +3,8 @@ import 'package:neptune_lexer/neptune_lexer.dart';
 import 'matcher.dart';
 
 abstract class Lexer {
+  const Lexer();
+
   String delimiter();
 
   List<String> dontRemoveDelimiterInThisRegex() => [];
@@ -68,28 +70,37 @@ abstract class Lexer {
       List<NeptuneTokenLiteral> literals, String delimiter) {
     final Stopwatch stopwatch = Stopwatch()..start();
     int leftTrimSize = 0;
-    while (RegExp(delimiter).matchAsPrefix(split.first) != null) {
-      leftTrimSize += split.removeAt(0).length;
-    }
+    if (split.isNotEmpty) {
+      while (split.isNotEmpty && RegExp(delimiter).matchAsPrefix(split.first) != null) {
+        leftTrimSize += split.removeAt(0).length;
+      }
 
-    final List<LexerMatchResult> matches = [];
-    LexerResponse lexerResponse;
-    try {
-      lexerResponse = createMatches(leftTrimSize, split, literals, (match) {
-        matches.add(match);
-      }, delimiter);
-    } catch (e, f) {
-      print(f);
-      lexerResponse = LexerResponseUnknownError(
-          "Unknown error :(, ${e.toString()} ${f.toString()}");
-    }
+      final List<LexerMatchResult> matches = [];
+      LexerResponse lexerResponse;
+      try {
+        lexerResponse = createMatches(leftTrimSize, split, literals, (match) {
+          matches.add(match);
+        }, delimiter);
+      } catch (e, f) {
+        print(f);
+        lexerResponse = LexerResponseUnknownError(
+            "Unknown error :(, ${e.toString()} ${f.toString()}");
+      }
 
-    stopwatch.stop();
-    return LexerResult(
-      respone: lexerResponse ?? const LexerResponseSuccessful(),
-      successfulResult: matches,
-      executionInfo: LexerExecutionInfo(durationToExecute: stopwatch.elapsed),
-    );
+      stopwatch.stop();
+      return LexerResult(
+        respone: lexerResponse ?? const LexerResponseSuccessful(),
+        successfulResult: matches,
+        durationToExecute: stopwatch.elapsed,
+      );
+    } else {
+      stopwatch.stop();
+      return LexerResult(
+        respone: const LexerResponseUnknownError("No tokens found"),
+        successfulResult: [],
+        durationToExecute: stopwatch.elapsed,
+      );
+    }
   }
 
   static LexerResponse createMatches(
@@ -99,6 +110,7 @@ abstract class Lexer {
       Function(LexerMatchResult) addMatch,
       String delimiter) {
     LexerResponse lastLexerResponse;
+
     for (final String rawToken in split) {
       final LexerMatchResult firstRun = _workMatches(
         literals,
@@ -108,6 +120,7 @@ abstract class Lexer {
 
       final Match rawTokenDelimiterMatch =
           RegExp(delimiter).matchAsPrefix(rawToken);
+
       if (rawTokenDelimiterMatch == null) {
         final finishedRun =
             getMatchForRawToken(firstRun, addMatch, literals, delimiter);

@@ -50,9 +50,6 @@ abstract class NodeType extends Rule {
 
   Rule directList() => NestedNode(
       "List+ of $this with no separator", (self) => this + self | this);
-
-  @override
-  String toString() => "$magentaClr" + runtimeType.toString() + "$resetCode";
 }
 
 class NestedNode extends NodeType {

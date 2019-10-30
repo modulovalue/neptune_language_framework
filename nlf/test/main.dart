@@ -31,7 +31,7 @@ void neptuneplus(String input, {bool printTree = false}) =>
     executePipeline(input, TestLexer(), TestParser());
 
 void mathexprs(String input, {bool printTree = false}) =>
-    executePipeline(input, Test2Lexer(), Test2Parser());
+    executePipeline(input, MathLexer(), MathParser());
 
 void cminusminus(String input, {bool printTree = false}) =>
     executePipeline(input, CMinusMinusLexer(), CMinusMinusParser(),
@@ -87,9 +87,9 @@ class NLFController {
 
       if (printExecutionTime) {
         print("Execution: "
-            "${(parserResult.executionInfo.durationToExecute + lexerResult.executionInfo.durationToExecute).inMicroseconds / 1000000.0} s "
-            "(L: ${lexerResult.executionInfo.durationToExecute.inMicroseconds / Duration.microsecondsPerSecond} s, "
-            "P: ${parserResult.executionInfo.durationToExecute.inMicroseconds / Duration.microsecondsPerSecond} s)");
+            "${(parserResult.durationToExecute + lexerResult.durationToExecute).inMicroseconds / 1000000.0} s "
+            "(L: ${lexerResult.durationToExecute.inMicroseconds / Duration.microsecondsPerSecond} s, "
+            "P: ${parserResult.durationToExecute.inMicroseconds / Duration.microsecondsPerSecond} s)");
       }
     } else {
       print(lexerResult.respone.toString());
@@ -103,7 +103,7 @@ class NLFController {
   }
 
   void printInfoToConsole() {
-    simpleLexerPrettyPrinter(JsonLexer());
-    simpleParserPrettyPrinter(JsonParser());
+    print(simpleLexerPrettyPrinterText(JsonLexer(), paddedTextConsole));
+    print(simpleParserPrettyPrinterText(JsonParser(), paddedTextConsole));
   }
 }

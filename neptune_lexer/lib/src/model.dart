@@ -1,47 +1,5 @@
-
 import 'package:meta/meta.dart';
 import 'package:neptune_lexer/neptune_lexer.dart';
-
-abstract class LexerResponse {
-  final String shortDescription;
-
-  const LexerResponse(this.shortDescription);
-
-  @override
-  String toString() {
-    return "${runtimeType.toString()}: ${shortDescription.toString()}";
-  }
-}
-
-class LexerResponseSuccessful extends LexerResponse {
-  const LexerResponseSuccessful() : super("success");
-}
-
-class LexerResponseUnknownError extends LexerResponse {
-  const LexerResponseUnknownError(String description) : super(description);
-}
-
-class LexerResponseUnknownToken extends LexerResponse {
-  const LexerResponseUnknownToken(String description) : super(description);
-}
-
-class LexerExecutionInfo {
-  final Duration durationToExecute;
-
-  const LexerExecutionInfo({@required this.durationToExecute});
-}
-
-class LexerResult {
-  final List<LexerMatchResult> successfulResult;
-  final LexerResponse respone;
-  final LexerExecutionInfo executionInfo;
-
-  const LexerResult({
-    @required this.successfulResult,
-    @required this.respone,
-    @required this.executionInfo,
-  });
-}
 
 class LexerMatchResult {
   final MatchingStatus status;
@@ -69,4 +27,39 @@ class LexerMatchResult {
   @override
   String toString() =>
       'LexerMatchResult{status: $status, token: $token, matchedString: $matchedString, positionFrom: $positionFrom, left: $left}';
+}
+
+abstract class LexerResponse {
+  final String shortDescription;
+
+  const LexerResponse._(this.shortDescription);
+
+  @override
+  String toString() {
+    return "${runtimeType.toString()}: ${shortDescription.toString()}";
+  }
+}
+
+class LexerResponseSuccessful extends LexerResponse {
+  const LexerResponseSuccessful() : super._("success");
+}
+
+class LexerResponseUnknownError extends LexerResponse {
+  const LexerResponseUnknownError(String description) : super._(description);
+}
+
+class LexerResponseUnknownToken extends LexerResponse {
+  const LexerResponseUnknownToken(String description) : super._(description);
+}
+
+class LexerResult {
+  final List<LexerMatchResult> successfulResult;
+  final LexerResponse respone;
+  final Duration durationToExecute;
+
+  const LexerResult({
+    @required this.successfulResult,
+    @required this.respone,
+    @required this.durationToExecute,
+  });
 }

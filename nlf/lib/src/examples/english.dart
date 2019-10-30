@@ -3,6 +3,7 @@ import 'package:neptune_parser/neptune_parser.dart';
 
 /// Lexer -------------------------
 class EnglishLexer extends Lexer {
+  const EnglishLexer();
   @override
   List<NeptuneTokenLiteral> literals() => const [SingleGreetingTokenLiteral()];
 
@@ -12,6 +13,8 @@ class EnglishLexer extends Lexer {
 
 /// Parser ------------------------
 class EnglishParser extends Parser {
+  const EnglishParser();
+
   @override
   NodeType root() {
     return EnglishNode();

@@ -4,8 +4,8 @@ import 'package:neptune_lexer/neptune_lexer.dart';
 import 'package:neptune_parser/neptune_parser.dart';
 
 void main() {
-  simpleLexerPrettyPrinter(JsonLexer());
-  simpleParserPrettyPrinter(JsonParser());
+  print(simpleLexerPrettyPrinterText(JsonLexer(), paddedTextConsole));
+  print(simpleParserPrettyPrinterText(JsonParser(), paddedTextConsole));
   test('lone', () {
     jsonParseTest("8239348 {}", false);
     const printTree = false;
@@ -101,9 +101,9 @@ void executePipeline(String input, Lexer lexer, Parser parser, bool succeed,
     }
 
     print("Execution: "
-        "${(parserResult.executionInfo.durationToExecute + lexerResult.executionInfo.durationToExecute).inMicroseconds / 1000000.0} s "
-        "(L: ${lexerResult.executionInfo.durationToExecute.inMicroseconds / Duration.microsecondsPerSecond} s, "
-        "P: ${parserResult.executionInfo.durationToExecute.inMicroseconds / Duration.microsecondsPerSecond} s)");
+        "${(parserResult.durationToExecute + lexerResult.durationToExecute).inMicroseconds / 1000000.0} s "
+        "(L: ${lexerResult.durationToExecute.inMicroseconds / Duration.microsecondsPerSecond} s, "
+        "P: ${parserResult.durationToExecute.inMicroseconds / Duration.microsecondsPerSecond} s)");
 
 //        print(parserResult.rootNode.toStringTree(true));
 
